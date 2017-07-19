@@ -109,4 +109,10 @@ float NodeManager::calcHeuristic(Node * node, Node * EndNode)
 	return 0;
 }
 
+float NodeManager::calcDistance(Node* node1, Node* node2)
+{
+
+	return 0;
+}
+
 

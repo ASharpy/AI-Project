@@ -21,7 +21,8 @@ public:
 	void getEdges();
 
 	float calcHeuristic(Node* node, Node* EndNode);
-
+	
+	float calcDistance(Node* node1, Node* node2 );
 
 
 };
