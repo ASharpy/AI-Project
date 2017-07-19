@@ -78,7 +78,7 @@ void NodeManager::getEdges()
 
 					edges[edgeNum].p2 = &gameNodes[index(x + offsetX, y + offsetY)];
 
-					edges->distance = calcDistance(edges[edgeNum].p1, edges[edgeNum].p2);
+					edges[edgeNum].distance = calcDistance(edges[edgeNum].p1, edges[edgeNum].p2);
 
 					if (std::find(edges[edgeNum].p1->edgeList.begin(), edges[edgeNum].p1->edgeList.end(), edges) != edges[edgeNum].p1->edgeList.end())
 					{
