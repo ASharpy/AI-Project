@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="State Machine">
+      <UniqueIdentifier>{e8ae209a-6606-4975-9977-e2e1e67128d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Creation">
+      <UniqueIdentifier>{3dee42c0-e365-48d1-af3a-bb7940f2c4f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grid">
+      <UniqueIdentifier>{62f5a078-3b2f-4716-b17f-ca5238ebc242}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Setting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadState.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashState.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>Object Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Edge.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeManager.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application2D.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateTypes.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadState.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashState.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Object Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Edge.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeManager.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
