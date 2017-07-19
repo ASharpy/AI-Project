@@ -78,6 +78,7 @@ void NodeManager::getEdges()
 
 					edges[edgeNum].p2 = &gameNodes[index(x + offsetX, y + offsetY)];
 
+					edges->distance = calcDistance(edges[edgeNum].p1, edges[edgeNum].p2);
 
 					if (std::find(edges[edgeNum].p1->edgeList.begin(), edges[edgeNum].p1->edgeList.end(), edges) != edges[edgeNum].p1->edgeList.end())
 					{
@@ -111,8 +112,13 @@ float NodeManager::calcHeuristic(Node * node, Node * EndNode)
 
 float NodeManager::calcDistance(Node* node1, Node* node2)
 {
+	float DistanceX = (node1->posX - node2->posX) * (node1->posX - node2->posX);
 
-	return 0;
+	float DistanceY = (node1->posY - node2->posY) * (node1->posY - node2->posY);
+
+	float distance = DistanceX + DistanceY;
+
+	return distance;
 }
 
 
