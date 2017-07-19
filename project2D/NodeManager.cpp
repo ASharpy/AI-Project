@@ -1,5 +1,7 @@
 #include "NodeManager.h"
 #include "Setting.h"
+#include <algorithm>
+
 
 #define SCREENX SETAPP->screensizeX
 #define SCREENY SETAPP->screensizeY
@@ -53,7 +55,8 @@ NodeManager::~NodeManager()
 
 void NodeManager::getEdges()
 {
-	NodeManager NM;
+
+
 
 	int edgeNum = 0;
 	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
@@ -75,6 +78,14 @@ void NodeManager::getEdges()
 
 					edges[edgeNum].p2 = &gameNodes[index(x + offsetX, y + offsetY)];
 
+
+					if (std::find(edges[edgeNum].p1->edgeList.begin(), edges[edgeNum].p1->edgeList.end(), edges) != edges[edgeNum].p1->edgeList.end())
+					{
+						edges[edgeNum].p1->edgeList.push_back(edges);
+
+						edges[edgeNum].p2->edgeList.push_back(edges);
+					}
+						
 					edgeNum++;
 
 
@@ -88,3 +99,14 @@ void NodeManager::getEdges()
 
 	}
 }
+
+float NodeManager::calcHeuristic(Node * node, Node * EndNode)
+{
+	float dx = node->posX - EndNode->posX;
+
+	float dy = node->posY - EndNode->posY;
+
+	return 0;
+}
+
+

@@ -1,7 +1,8 @@
 #pragma once
-#include "Node.h"
 
+#include <cmath>
 
+class Node;
 class Edge
 {
 public:
@@ -13,7 +14,7 @@ public:
 
 	float g;
 
-	
+	float distance;
 
 };
 

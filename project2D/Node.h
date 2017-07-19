@@ -1,4 +1,8 @@
 #pragma once
+#include <vector>
+#include "Edge.h"
+
+
 class Node
 {
 public:
@@ -14,6 +18,8 @@ public:
 	float posY;
 	
 	bool iswalkable;
+
+	std::vector<Edge*> edgeList;
 
 private:
 

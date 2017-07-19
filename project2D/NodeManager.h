@@ -20,5 +20,9 @@ public:
 	
 	void getEdges();
 
+	float calcHeuristic(Node* node, Node* EndNode);
+
+
+
 };
 
