@@ -131,4 +131,9 @@ float NodeManager::calcDistance(Node* node1, Node* node2)
 	return distance;
 }
 
+Node NodeManager::aStar(Node * Start, Node * end)
+{
+	return Node();
+}
+
 

@@ -34,14 +34,15 @@ void Setting::render()
 
 	NM.createNodes();
 	NM.getEdges();
+	NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[100]);
 	int colour = 0;
-	for (int i = 0; i < nodeCount; i++)
+	for (int i = 0; i < 38; i++)
 	{
 
 		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
 	}
 
-	for (int i = 0; i < 17836; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		int edgeNum = 0;
 
