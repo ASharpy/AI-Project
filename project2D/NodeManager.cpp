@@ -103,11 +103,21 @@ void NodeManager::getEdges()
 
 float NodeManager::calcHeuristic(Node * node, Node * EndNode)
 {
-	float dx = node->posX - EndNode->posX;
+	float H; 
 
-	float dy = node->posY - EndNode->posY;
+	float xDistance = abs(node->posX - EndNode->posX);
 
-	return 0;
+	float yDistance = abs(node->posY - EndNode->posY);
+
+	if (xDistance < yDistance)
+	{
+		H = (GRIDLENGTH * 1.414 * yDistance) + (xDistance - yDistance);
+	}
+	else
+	{
+		H = (GRIDLENGTH * 1.414 * xDistance) + (yDistance - xDistance);
+	}
+	return H;
 }
 
 float NodeManager::calcDistance(Node* node1, Node* node2)
