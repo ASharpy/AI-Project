@@ -10,6 +10,8 @@ public:
 	void createNodes();
 
 	Node *gameNodes; //2304;
+	int TOTAL_NODES = 0;
+	int TOTAL_EDGE = 0;
 
 
 	int index(int posX, int posY);
@@ -22,10 +24,12 @@ public:
 	void getEdges();
 
 	float calcHeuristic(Node* node, Node* EndNode);
-	
-	float calcDistance(Node* node1, Node* node2 );
+
+	float calcDistance(Node* node1, Node* node2);
+	bool CircleCheck(Node* node1, Node* node2, float Dist);
 
 	std::list<Node*>aStar(Node* Start, Node* End);
 
+	void findNeighbours(Node* node);
 };
 

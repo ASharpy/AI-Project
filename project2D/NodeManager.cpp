@@ -11,19 +11,23 @@
 
 void NodeManager::createNodes()
 {
-	
+	int i = 0;
 	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
 	{
 		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
 		{
-			
-			gameNodes[index(x,y)].posX = (float)x;
 
-			gameNodes[index(x,y)].posY = (float)y;
-			
+			gameNodes[i].posX = (float)x;
+			gameNodes[i].posY = (float)y;
+
+			gameNodes[i].index = i;
+
+			i++;
+			TOTAL_NODES = i;
 		}
-		
 	}
+	
+	
 }
 
 int NodeManager::index(int posX, int posY)
@@ -56,10 +60,30 @@ NodeManager::~NodeManager()
 
 void NodeManager::getEdges()
 {
+	for (int i = 0; i < TOTAL_NODES; i++)
+	{
+		for (int j = i+1; j < TOTAL_NODES; j++)
+		{
+			if (CircleCheck(&gameNodes[i], &gameNodes[j], (GRIDLENGTH + GRIDLENGTH)*0.9f))
+			{
+				edges[TOTAL_EDGE].p1 = &gameNodes[i];
+
+				edges[TOTAL_EDGE].p2 = &gameNodes[j];
+
+				edges[TOTAL_EDGE].distance = calcDistance(&gameNodes[i], &gameNodes[i]);
+
+				
+				gameNodes[i].edgeList.push_back(edges);
+
+				gameNodes[j].edgeList.push_back(edges);
+
+				TOTAL_EDGE++;
+			}
+		}
+	}
 
 
-
-	int edgeNum = 0;
+	/*
 	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
 	{
 		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
@@ -75,21 +99,7 @@ void NodeManager::getEdges()
 					if (offsetX == 0 && offsetY == 0) continue;
 				
 
-					edges[edgeNum].p1 = &gameNodes[index(x, y)];
-
-					edges[edgeNum].p2 = &gameNodes[index(x + offsetX, y + offsetY)];
-
-					edges[edgeNum].distance = calcDistance(edges[edgeNum].p1, edges[edgeNum].p2);
-
-					if (std::find(edges[edgeNum].p1->edgeList.begin(), edges[edgeNum].p1->edgeList.end(), edges) != edges[edgeNum].p1->edgeList.end())
-					{
-						edges[edgeNum].p1->edgeList.push_back(edges);
-
-						edges[edgeNum].p2->edgeList.push_back(edges);
-					}
-						
-					edgeNum++;
-
+				
 
 				}
 			}
@@ -99,7 +109,7 @@ void NodeManager::getEdges()
 
 		}
 
-	}
+	}*/
 }
 
 float NodeManager::calcHeuristic(Node * node, Node * EndNode)
@@ -123,13 +133,19 @@ float NodeManager::calcHeuristic(Node * node, Node * EndNode)
 
 float NodeManager::calcDistance(Node* node1, Node* node2)
 {
-	float DistanceX = (node1->posX - node2->posX) * (node1->posX - node2->posX);
+	float DistanceX = (node1->posX - node2->posX);// *(node1->posX - node2->posX);
 
-	float DistanceY = (node1->posY - node2->posY) * (node1->posY - node2->posY);
+	float DistanceY = (node1->posY - node2->posY);// *(node1->posY - node2->posY);
 
-	float distance = DistanceX + DistanceY;
+	float distance = (DistanceX*DistanceX) + (DistanceY*DistanceY);
 
 	return distance;
+}
+
+bool NodeManager::CircleCheck(Node * node1, Node * node2, float Dist)
+{
+	float SqrDist = calcDistance(node1, node2);
+	return SqrDist < (Dist * Dist);
 }
 
 std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
@@ -192,7 +208,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 				}
 			}
-			
+
 		}
 
 		current = search;
@@ -201,24 +217,30 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 		{
 			//add in the reconstruct path function
 		}
-		
+
 		open.remove(current);
-		
+
 		closed.push_front(current);
-		
-		
+
+
 		for (int i = 0; i < current->edgeList.size; i++)
 		{
-			std::find(auto &var : closed , current->edgeList
-		
+			//	//std::find(auto &var : closed , current->edgeList
+			//
 
-			
-			
+			//	
+			//	
+
+			//}
 
 		}
 	}
-
 	return std::list<Node*>();
+	}
+
+void NodeManager::findNeighbours(Node * node)
+{
+	node->edgeList;
 }
 
 

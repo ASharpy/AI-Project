@@ -28,6 +28,7 @@ public:
 	
 	bool iswalkable;
 
+	int index = 0;
 	std::vector<Edge*> edgeList;
 
 private: 
