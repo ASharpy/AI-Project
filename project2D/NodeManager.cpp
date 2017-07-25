@@ -3,6 +3,7 @@
 #include <algorithm>
 
 
+
 #define SCREENX SETAPP->screensizeX
 #define SCREENY SETAPP->screensizeY
 #define GRIDLENGTH SETAPP->grid
@@ -131,9 +132,94 @@ float NodeManager::calcDistance(Node* node1, Node* node2)
 	return distance;
 }
 
-Node NodeManager::aStar(Node * Start, Node * end)
+std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 {
-	return Node();
+	std::list<Node*>closed;
+
+	std::list<Node*>open;
+
+
+	open.push_front(Start);
+
+	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
+	{
+		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
+		{
+
+			gameNodes[index(x, y)].setgScore(INFINITY);
+
+			gameNodes[index(x, y)].setHscore(INFINITY);
+
+			gameNodes[index(x, y)].setfScore(INFINITY);
+			
+			gameNodes[index(x, y)].camefrom = nullptr;
+
+
+		}
+
+	}
+
+	Start->setgScore(0);
+
+	Start->setHscore(calcHeuristic(Start, End));
+
+	Start->setfScore(Start->hScore + Start->gScore);
+	
+	Node * current = Start;
+
+	while (!open.empty())
+	{
+		float start = Start->fScore;
+
+		float min;
+
+		Node* search = open.front();
+		for (auto &var : open)
+		{
+			if (search->fScore > var->fScore)
+			{
+				search = var;
+			}
+			else if (search->fScore == var->fScore)
+			{
+				if (search->hScore > var->hScore)
+				{
+					search = var;
+				}
+				else if (search->hScore == var->hScore)
+				{
+					continue;
+
+				}
+			}
+			
+		}
+
+		current = search;
+
+		if (current == End)
+		{
+			//add in the reconstruct path function
+		}
+		
+		open.remove(current);
+		
+		closed.push_front(current);
+		
+		
+		for (int i = 0; i < current->edgeList.size; i++)
+		{
+			std::find(auto &var : closed , current->edgeList
+		
+
+			
+			
+
+		}
+	}
+
+	return std::list<Node*>();
 }
+
 
 

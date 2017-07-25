@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 #include "Edge.h"
+#include <list>
 
 class NodeManager
 {
@@ -24,6 +25,7 @@ public:
 	
 	float calcDistance(Node* node1, Node* node2 );
 
+	std::list<Node*>aStar(Node* Start, Node* End);
 
 };
 

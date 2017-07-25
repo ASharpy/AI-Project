@@ -21,10 +21,7 @@ public:
 	*/
 	void update(float deltaTime, StateManager * SM);
 
-	/*
-	draws the paddles and ball
-	no returns
-	*/
+
 	void render();
 
 	const int screensizeY = 720;

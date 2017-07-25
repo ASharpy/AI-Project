@@ -9,22 +9,29 @@ public:
 	Node();
 	~Node();
 	
-	float getH();
+	float gScore;
 
-	float getF();
+	float fScore;
+
+	float hScore;
+
+	void setHscore(float hNum);
+
+	void setgScore(float gNum);
+
+	void setfScore(float fNum);
 
 	float posX;
 	
+	Node* camefrom;
 	float posY;
 	
 	bool iswalkable;
 
 	std::vector<Edge*> edgeList;
 
-private:
+private: 
 
-	float f;
-
-	float h;
+	
 };
 
