@@ -142,11 +142,13 @@ float NodeManager::calcDistance(Node* node1, Node* node2)
 	return distance;
 }
 
+
 bool NodeManager::CircleCheck(Node * node1, Node * node2, float Dist)
 {
 	float SqrDist = calcDistance(node1, node2);
 	return SqrDist < (Dist * Dist);
 }
+
 
 std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 {
@@ -154,26 +156,23 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 	std::list<Node*>open;
 
+//	std::list<Node*>::iterator iter;
 
 	open.push_front(Start);
 
-	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
+	for (int i = 0; i < TOTAL_NODES; i++)
 	{
-		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
-		{
 
-			gameNodes[index(x, y)].setgScore(INFINITY);
+		gameNodes[i].setgScore(INFINITY);
 
-			gameNodes[index(x, y)].setHscore(INFINITY);
+		gameNodes[i].setHscore(INFINITY);
 
-			gameNodes[index(x, y)].setfScore(INFINITY);
-			
-			gameNodes[index(x, y)].camefrom = nullptr;
+		gameNodes[i].setfScore(INFINITY);
 
-
-		}
-
+		gameNodes[i].camefrom = nullptr;
 	}
+
+	
 
 	Start->setgScore(0);
 
@@ -223,24 +222,44 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 		closed.push_front(current);
 
 
-		for (int i = 0; i < current->edgeList.size; i++)
-		{
-			//	//std::find(auto &var : closed , current->edgeList
-			//
+			for (auto &var : current->edgeList)
+			{
+				if (var->p2->iswalkable == false)
+				{
+					continue;
+				}
+				if (std::find(closed.begin(), closed.end(), var->p2) != closed.end())
+				{
+					continue;
+				}
+				else if (std::find(open.begin(), open.end(), var->p2) == open.end())
+				{
+					open.push_front(var->p2);
+				}
 
-			//	
-			//	
+				float tenative_gscore = current->gScore + calcDistance(current, var->p2);
+					if (tenative_gscore >= var->p2->gScore)
+					{
+						continue;
+					}
 
-			//}
-
-		}
+					current = var->p2;
+					var->p2->setgScore(tenative_gscore);
+					var->p2->fScore = var->p2->gScore + calcHeuristic(var->p2, End);
+			}
 	}
+
 	return std::list<Node*>();
 	}
 
 void NodeManager::findNeighbours(Node * node)
 {
-	node->edgeList;
+	
+
+	for (std::vector<Edge*>::iterator iter = node->edgeList.begin(); iter != node->edgeList.end(); ++iter)
+	{
+	
+	}
 }
 
 
