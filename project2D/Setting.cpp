@@ -34,9 +34,9 @@ void Setting::render()
 
 	NM.createNodes();
 	NM.getEdges();
-	NM.aStar(&NM.gameNodes[0], &NM.gameNodes[100]);
+	NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
 	NM.findNeighbours(&NM.gameNodes[0]);
-	NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[100]);
+	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
 	int colour = 0;
 	for (int i = 0; i < NM.TOTAL_NODES; i++)
 	{

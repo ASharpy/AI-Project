@@ -19,6 +19,8 @@ public:
 	NodeManager();
 	~NodeManager();
 
+	
+
 	Edge *edges;
 	
 	void getEdges();
@@ -29,6 +31,8 @@ public:
 	bool CircleCheck(Node* node1, Node* node2, float Dist);
 
 	std::list<Node*>aStar(Node* Start, Node* End);
+
+	std::list<Node*>reconstructPath(Node* current);
 
 	void findNeighbours(Node* node);
 };

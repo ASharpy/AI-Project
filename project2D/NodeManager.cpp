@@ -156,6 +156,10 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 	std::list<Node*>open;
 
+	int iter = 0;
+
+	float tenative_gscore;
+
 //	std::list<Node*>::iterator iter;
 
 	open.push_front(Start);
@@ -214,42 +218,69 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		if (current == End)
 		{
-			//add in the reconstruct path function
+			reconstructPath(current);
 		}
 
 		open.remove(current);
 
 		closed.push_front(current);
 
+		
+
+		
 
 			for (auto &var : current->edgeList)
 			{
-				if (var->p2->iswalkable == false)
+				
+				if (var[iter].p2->iswalkable == false) 
 				{
 					continue;
 				}
-				if (std::find(closed.begin(), closed.end(), var->p2) != closed.end())
+				if (std::find(closed.begin(), closed.end(), var[iter].p2) != closed.end())
 				{
 					continue;
 				}
-				else if (std::find(open.begin(), open.end(), var->p2) == open.end())
+				else if (std::find(open.begin(), open.end(), var[iter].p2) == open.end())
 				{
-					open.push_front(var->p2);
+					open.push_front(var[iter].p2);
+					var[iter].p2->camefrom = current;
 				}
 
-				float tenative_gscore = current->gScore + calcDistance(current, var->p2);
-					if (tenative_gscore >= var->p2->gScore)
+				 tenative_gscore = current->gScore + calcDistance(current, var[iter].p2);
+					if (tenative_gscore >= var[iter].p2->gScore)
 					{
 						continue;
 					}
-
-					current = var->p2;
-					var->p2->setgScore(tenative_gscore);
-					var->p2->fScore = var->p2->gScore + calcHeuristic(var->p2, End);
+					iter++;
+					
+	}
+	
+			for (auto &var : open)
+			{
+				var->camefrom = current;
+				var->camefrom->setgScore(tenative_gscore);
+				var->camefrom->fScore = var->camefrom->gScore + calcHeuristic(var->camefrom, End);
 			}
 	}
 
 	return std::list<Node*>();
+	}
+
+
+	std::list<Node*> NodeManager::reconstructPath(Node * current)
+	{
+	
+		std::list<Node*> totalPath;
+
+		totalPath.push_back(current);
+		while (current->camefrom != nullptr)
+		{
+			current = current->camefrom;
+			totalPath.push_back(current);
+		}
+
+		return totalPath;
+	
 	}
 
 void NodeManager::findNeighbours(Node * node)
