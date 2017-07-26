@@ -32,9 +32,11 @@ void Setting::render()
 
 	NodeManager NM;
 
+	std::list<Node*> PATH;
+
 	NM.createNodes();
 	NM.getEdges();
-	NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
+	PATH = NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
 	NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
 	int colour = 0;

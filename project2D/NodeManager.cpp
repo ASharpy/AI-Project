@@ -156,7 +156,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 	std::list<Node*>open;
 
-	int iter = -1;
+	
 
 	float tenative_gscore;
 
@@ -221,7 +221,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		if (std::find(closed.begin(), closed.end(), End) != closed.end())
 		{
-			reconstructPath(current);
+			return reconstructPath(current);
 		}
 
 		
@@ -231,42 +231,42 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 
 
-
+		
 
 		for (auto &var : current->edgeList)
 		{
-			iter++;
-			if (var[iter].p2->iswalkable == false)
+			
+			
+			if (var->p2->iswalkable == false)
 			{
 				continue;
 			}
-			if (std::find(closed.begin(), closed.end(), var[iter].p2) != closed.end())
+			if (std::find(closed.begin(), closed.end(), var->p2) != closed.end())
 			{
 				continue;
 			}
 			// if its not in the open set already, chuck it in for comparision (ie, new nodes are being added to the open set with each iteration.)
-			else if (std::find(open.begin(), open.end(), var[iter].p2) == open.end())
+			else if (std::find(open.begin(), open.end(), var->p2) == open.end())
 			{
-				open.push_front(var[iter].p2);
-				var[iter].p2->camefrom = current;
+				open.push_front(var->p2);
+				var->p2->camefrom = current;
 
 			}
 
 			//
-			tenative_gscore = current->gScore + calcDistance(current, var[iter].p2);
-			if (tenative_gscore >= var[iter].p2->gScore)
+			tenative_gscore = current->gScore + calcDistance(current, var->p2);
+			if (tenative_gscore >= var->p2->gScore)
 			{
 				continue;
 			}
 
-			var[iter].p2->camefrom = current;
-			var[iter].p2->setgScore(tenative_gscore);
-			var[iter].p2->setfScore(var[iter].p2->camefrom->gScore + calcHeuristic(var[iter].p2, End));
+			var->p2->camefrom = current;
+			var->p2->setgScore(tenative_gscore);
+			var->p2->setfScore(var->p2->camefrom->gScore + calcHeuristic(var->p2, End));
 
 
 		}
 	}
-	return std::list<Node*>();
 	}
 
 
