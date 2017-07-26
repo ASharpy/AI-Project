@@ -156,7 +156,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 	std::list<Node*>open;
 
-	int iter = 0;
+	int iter = -1;
 
 	float tenative_gscore;
 
@@ -186,6 +186,8 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 	
 	Node * current = Start;
 
+
+
 	while (!open.empty())
 	{
 		float start = Start->fScore;
@@ -193,6 +195,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 		float min;
 
 		Node* search = open.front();
+		//
 		for (auto &var : open)
 		{
 			if (search->fScore > var->fScore)
@@ -216,53 +219,53 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		current = search;
 
-		if (current == End)
+		if (std::find(closed.begin(), closed.end(), End) != closed.end())
 		{
 			reconstructPath(current);
 		}
 
+		
+		// pops them from the open list to the closed list.
 		open.remove(current);
-
 		closed.push_front(current);
 
-		
 
-		
 
-			for (auto &var : current->edgeList)
+
+
+		for (auto &var : current->edgeList)
+		{
+			iter++;
+			if (var[iter].p2->iswalkable == false)
 			{
-				
-				if (var[iter].p2->iswalkable == false) 
-				{
-					continue;
-				}
-				if (std::find(closed.begin(), closed.end(), var[iter].p2) != closed.end())
-				{
-					continue;
-				}
-				else if (std::find(open.begin(), open.end(), var[iter].p2) == open.end())
-				{
-					open.push_front(var[iter].p2);
-					var[iter].p2->camefrom = current;
-				}
-
-				 tenative_gscore = current->gScore + calcDistance(current, var[iter].p2);
-					if (tenative_gscore >= var[iter].p2->gScore)
-					{
-						continue;
-					}
-					iter++;
-					
-	}
-	
-			for (auto &var : open)
-			{
-				var->camefrom = current;
-				var->camefrom->setgScore(tenative_gscore);
-				var->camefrom->fScore = var->camefrom->gScore + calcHeuristic(var->camefrom, End);
+				continue;
 			}
-	}
+			if (std::find(closed.begin(), closed.end(), var[iter].p2) != closed.end())
+			{
+				continue;
+			}
+			// if its not in the open set already, chuck it in for comparision (ie, new nodes are being added to the open set with each iteration.)
+			else if (std::find(open.begin(), open.end(), var[iter].p2) == open.end())
+			{
+				open.push_front(var[iter].p2);
+				var[iter].p2->camefrom = current;
 
+			}
+
+			//
+			tenative_gscore = current->gScore + calcDistance(current, var[iter].p2);
+			if (tenative_gscore >= var[iter].p2->gScore)
+			{
+				continue;
+			}
+
+			var[iter].p2->camefrom = current;
+			var[iter].p2->setgScore(tenative_gscore);
+			var[iter].p2->setfScore(var[iter].p2->camefrom->gScore + calcHeuristic(var[iter].p2, End));
+
+
+		}
+	}
 	return std::list<Node*>();
 	}
 
