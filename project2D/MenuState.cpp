@@ -51,7 +51,7 @@ void MenuState::update(float dt)
 
 void MenuState::render()
 {
-	SETAPP->app->Renderer->setRenderColour(0.1f, 0.1f, 0.1f, 1.0f);
+	//SETAPP->app->Renderer->setRenderColour(0.1f, 0.1f, 0.1f, 1.0f);
 	SETAPP->app->Renderer->drawBox(590, 520, 300, 60);
 
 	SETAPP->app->Renderer->setRenderColour(0.5f, 0.5f, 0.5f, 1.0f);

@@ -36,7 +36,7 @@ void Setting::render()
 
 	NM.createNodes();
 	NM.getEdges();
-	PATH = NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
+	//PATH = NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
 	NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
 	int colour = 0;
@@ -48,23 +48,12 @@ void Setting::render()
 
 	for (int i = 0; i <NM.TOTAL_EDGE; i++)
 	{
-		int edgeNum = 0;
+		
 
-		{
-			if (colour == 0)
-			{
-				SETAPP->app->Renderer->setRenderColour(1.0f, 0.0f, 0.0f, 1.0f);
-				colour = 1;
-			}
-			else
-			{
-				SETAPP->app->Renderer->setRenderColour(0.5f, 0.5f, 0.5f, 1.0f);
-				colour = 0;
-			}
 
 			SETAPP->app->Renderer->drawLine(NM.edges[i].p1->posX, NM.edges[i].p1->posY, NM.edges[i].p2->posX, NM.edges[i].p2->posY);
 
-		}
+		
 	}
 }
 Setting::~Setting()
