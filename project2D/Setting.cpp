@@ -29,14 +29,14 @@ void Setting::update(float deltaTime, StateManager * SM)
 void Setting::render()
 {
 	Node node;
-
 	NodeManager NM;
 
 	std::list<Node*> PATH;
 
 	NM.createNodes();
 	NM.getEdges();
-	//PATH = NM.aStar(&NM.gameNodes[0], &NM.gameNodes[5]);
+	PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1500]);
+
 	//NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
 	int colour = 0;
@@ -46,14 +46,17 @@ void Setting::render()
 		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
 	}
 
-	for (int i = 0; i <NM.TOTAL_EDGE; i++)
+Node* tempPtr = PATH.front();
+	for (auto &var : PATH)
 	{
+		if (var == PATH.front())
+		{
+			continue;
+		}
 		
 
-
-			SETAPP->app->Renderer->drawLine(NM.edges[i].p1->posX, NM.edges[i].p1->posY, NM.edges[i].p2->posX, NM.edges[i].p2->posY);
-
-		
+	SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY, 1.0f, 0);
+	tempPtr = var;
 	}
 }
 Setting::~Setting()

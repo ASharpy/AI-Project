@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Edge.h"
-#include <list>
+
 
 
 class Node
@@ -30,7 +30,8 @@ public:
 	bool iswalkable;
 
 	int index = 0;
-	std::list<Edge*>edgelist;
+
+	std::vector<Edge*>edgelist;
 
 private: 
 
