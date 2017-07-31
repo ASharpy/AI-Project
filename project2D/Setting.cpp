@@ -35,16 +35,26 @@ void Setting::render()
 
 	NM.createNodes();
 	NM.getEdges();
-	PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1500]);
+
+
+	PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
 
 	//NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
-	int colour = 0;
-	for (int i = 0; i < NM.TOTAL_NODES; i++)
-	{
 
-		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
-	}
+
+	//int colour = 0;
+	//for (int i = 0; i < NM.TOTAL_NODES; i++)
+	//{
+	//	
+
+	//	if (NM.gameNodes[i].iswalkable)
+	//	{		
+	//		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
+
+	//		
+	//	}
+	//}
 
 Node* tempPtr = PATH.front();
 	for (auto &var : PATH)

@@ -28,7 +28,7 @@ bool Application2D::startup() {
 	Renderer = new aie::Renderer2D();
 	SM = new StateManager();
 	input = aie::Input::getInstance();
-
+	font = new aie::Font("./font/consolas.ttf", 10);
 	SM->registerState(SPLASH, new SplashState(this, SM));
 	SM->registerState(PAUSE, new PauseState(this, SM));
 	SM->registerState(GAME, new GameState(this, SM));

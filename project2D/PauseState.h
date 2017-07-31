@@ -18,7 +18,7 @@ public:
 	virtual void render();
 
 	PauseState(Application2D *_app, StateManager *_SM);
-
+	char str[2304];
 	virtual ~PauseState();
 
 private:

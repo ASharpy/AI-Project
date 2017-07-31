@@ -20,6 +20,16 @@ void NodeManager::createNodes()
 			gameNodes[i].posX = (float)x;
 			gameNodes[i].posY = (float)y;
 
+			for (int i = 5; i < 800 ; i += 36)
+			{
+				gameNodes[i].iswalkable = false;
+			}
+			
+			for (int i = 843; i < 851; i++)
+			{
+				gameNodes[i].iswalkable = false;
+			}
+			
 			gameNodes[i].index = i;
 
 			i++;

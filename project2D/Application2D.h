@@ -39,6 +39,7 @@ public:
 	aie::Input* input;
 	StateManager *getStateManager() { return SM; };
 	aie::Renderer2D *Renderer;
+	aie::Font * font;
 
 protected:
 
