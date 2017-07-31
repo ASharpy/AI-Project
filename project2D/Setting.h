@@ -5,11 +5,16 @@
 
 class Application2D;
 #define SETAPP Setting::getInstance()
+#define SCREENX SETAPP->screensizeX
+#define SCREENY SETAPP->screensizeY
+#define GRIDLENGTH SETAPP->grid
+#define NODECOUNT SETAPP->nodeCount
 
 
 class Setting
 {
 public:
+	
 	Application2D *app;
 	static Setting* getInstance();
 
@@ -24,15 +29,19 @@ public:
 	const int screensizeX = 1280;
 
 	const int grid = 20;
-	
+
+	NodeManager *NM;
+
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
+	
+
 private:
 	Setting();
 	~Setting();
 
 	
 
-	NodeManager *NM;
+	
 
 	aie::Font * font;
 

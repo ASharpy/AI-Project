@@ -8,9 +8,14 @@
 
 Setting::Setting()
 {
+
 	player = Factory::Makeplayer(0, 0);
+
+	NM = new NodeManager();
+
+	NM->createNodes();
+	NM->getEdges();
 	
-		
 }
 
 
@@ -24,14 +29,13 @@ Setting * Setting::getInstance()
 void Setting::update(float deltaTime, StateManager * SM)
 {
 
-	NM = new NodeManager;
+	
 	
 }
 
 void Setting::render()
 {
-	NM->createNodes();
-	NM->getEdges();
+
 
 	std::list<Node*> PATH;
 
@@ -39,9 +43,8 @@ void Setting::render()
 	bool path = false;
 
 
-	PATH = NM->aStar(&NM->gameNodes[37], &NM->gameNodes[1000]);
+	//PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
 	
-
 	
 
 
@@ -88,7 +91,6 @@ void Setting::render()
 Setting::~Setting()
 {
 	delete player;
-	delete NM;
 }
 
 

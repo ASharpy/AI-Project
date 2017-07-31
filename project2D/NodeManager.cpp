@@ -4,17 +4,14 @@
 
 
 
-#define SCREENX SETAPP->screensizeX
-#define SCREENY SETAPP->screensizeY
-#define GRIDLENGTH SETAPP->grid
 
 
 void NodeManager::createNodes()
 {
 	int i = 0;
-	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
+	for (int x = 0; x < 1280; x += 20)
 	{
-		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
+		for (int y = 0; y < 720; y += 20)
 		{
 
 			gameNodes[i].posX = (float)x;
@@ -53,9 +50,9 @@ int NodeManager::index(int posX, int posY)
 
 NodeManager::NodeManager()
 {
-	gameNodes = new Node[SETAPP->nodeCount];
+	gameNodes = new Node[2304];
 
-		edges = new Edge[SETAPP->nodeCount * 8];
+		edges = new Edge[2304 * 8];
 	
 }
 
