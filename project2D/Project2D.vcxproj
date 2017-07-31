@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LoadState.cpp" />
@@ -22,6 +23,7 @@
     <ClCompile Include="NodeManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="State.cpp" />
@@ -30,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateTypes.h" />
@@ -39,6 +42,7 @@
     <ClInclude Include="NodeManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SplashState.h" />
     <ClInclude Include="State.h" />

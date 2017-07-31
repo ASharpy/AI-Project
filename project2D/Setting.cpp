@@ -3,13 +3,14 @@
 #include "StateManager.h"
 #include "GameStateTypes.h"
 #include <string>
-#include "Factory.h"
 #include "Node.h"
-#include "NodeManager.h"
+
 
 Setting::Setting()
 {
-
+	player = Factory::Makeplayer(0, 0);
+	
+		
 }
 
 
@@ -22,22 +23,29 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-	
 
+	NM = new NodeManager;
+	
 }
 
 void Setting::render()
 {
-	Node node;
-	NodeManager NM;
+	NM->createNodes();
+	NM->getEdges();
 
 	std::list<Node*> PATH;
 
-	NM.createNodes();
-	NM.getEdges();
+
+	bool path = false;
 
 
-	PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
+	PATH = NM->aStar(&NM->gameNodes[37], &NM->gameNodes[1000]);
+	
+
+	
+
+
+
 
 	//NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
@@ -56,22 +64,31 @@ void Setting::render()
 	//	}
 	//}
 
-Node* tempPtr = PATH.front();
-	for (auto &var : PATH)
-	{
-		if (var == PATH.front())
-		{
-			continue;
-		}
-		
+	//Node* tempPtr = PATH.front();
+	//for (auto &var : PATH)
+	//{
+	//	if (var == PATH.front())
+	//	{
+	//		continue;
+	//	}
+	//	
 
-	SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY, 1.0f, 0);
-	tempPtr = var;
-	}
+	//SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY, 1.0f, 0);
+	//tempPtr = var;
+	//}
+
+
+
+
+	player->Draw();
+
+
+
 }
 Setting::~Setting()
 {
-
+	delete player;
+	delete NM;
 }
 
 

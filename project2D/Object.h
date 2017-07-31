@@ -12,9 +12,9 @@ public:
 
 	float posY;
 
-	float wide;
+	//float wide;
 
-	float tall;
+	float width;
 
 	float Yvelocity;
 

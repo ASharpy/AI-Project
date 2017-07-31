@@ -22,4 +22,5 @@ Object::~Object()
 
 void Object::Draw()
 {
+	SETAPP->app->Renderer->drawCircle(posX, posY, width);
 }

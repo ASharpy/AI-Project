@@ -61,6 +61,12 @@
     <ClCompile Include="NodeManager.cpp">
       <Filter>Grid</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object Creation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -107,6 +113,12 @@
     </ClInclude>
     <ClInclude Include="NodeManager.h">
       <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object Creation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

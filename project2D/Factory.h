@@ -1,5 +1,7 @@
 #pragma once
 #include "Object.h"
+#include "Player.h"
+#include "Enemy.h"
 
 class Factory
 {
@@ -11,7 +13,7 @@ public:
 	@param PosY the Y position of the ball
 	returns new ball 
 	*/
-	static Object* MakeBall(float PosX, float PosY);
+	static Object* Makeplayer(float PosX, float PosY);
 	
 	/*
 	Creates a new paddle type object
@@ -19,7 +21,7 @@ public:
 	@param PosY the Y position of the paddle
 	returns new paddle
 	*/
-	static Object* MakePaddle(float PosX, float PosY);
+	static Object* MakeEnemy(float PosX, float PosY);
 	Factory();
 
 	~Factory();
