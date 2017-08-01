@@ -20,7 +20,7 @@ public:
 	@param the state
 	no returns
 	*/
-	void registerState(int ID , BehaviourState * bState);
+	void registerBState(int ID , BehaviourState * bState);
 
 	/*
 	adds the push command to the command list
@@ -68,7 +68,7 @@ private:
 	adds all the states that need to be registered to the map
 	no returns
 	*/
-	void doRegoStates(int id , BehaviourState* bStates);
+	void doRegoBStates(int id , BehaviourState* bStates);
 
 	/*
 	pop back all active states

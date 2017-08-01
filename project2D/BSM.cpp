@@ -21,7 +21,7 @@ void BSM::updateState(float DT)
 
 }
 
-void BSM::registerState(int ID, BehaviourState * bState)
+void BSM::registerBState(int ID, BehaviourState * bState)
 {
 	commands command;
 	command.id = ID;
@@ -63,7 +63,7 @@ void BSM::docommands()
 		switch (command.command)
 		{
 		case commandTypes::REGISTER:
-			doRegoStates(command.id, command.commandState);
+			doRegoBStates(command.id, command.commandState);
 			break;
 		case commandTypes::POP:
 			doPopState();
@@ -77,7 +77,7 @@ void BSM::docommands()
 	commandList.clear();
 }
 
-void BSM::doRegoStates(int id, BehaviourState * bStates)
+void BSM::doRegoBStates(int id, BehaviourState * bStates)
 {
 	RegoState.insert(std::pair<int, BehaviourState*>(id, bStates));
 }

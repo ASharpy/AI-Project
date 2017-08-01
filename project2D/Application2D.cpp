@@ -10,6 +10,8 @@
 #include "SplashState.h"
 #include "PauseState.h"
 #include "Exception.h"
+#include "BehaviourState.h"
+#include "BehaviourStatetypes.h"
 
 using namespace StateManagement;
 Application2D::Application2D()

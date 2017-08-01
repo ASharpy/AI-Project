@@ -3,6 +3,7 @@
 #include "Renderer2D.h"
 #include "Player.h"
 #include "StateManager.h"
+#include "BSM.h"
 
 class Application2D : public aie::Application {
 public:
@@ -42,6 +43,7 @@ public:
 	aie::Font * font;
 
 protected:
+	BehaviourState *BSM;
 
 	StateManager *SM;
 
