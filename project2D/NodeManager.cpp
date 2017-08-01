@@ -72,7 +72,7 @@ void NodeManager::getEdges()
 	{
 		for (int j = i+1; j < TOTAL_NODES; j++)
 		{
-			if (CircleCheck(&gameNodes[i], &gameNodes[j], (GRIDLENGTH + GRIDLENGTH)*0.9f))
+			if (CircleCheck(&gameNodes[i], &gameNodes[j], (20 + 20)*0.9f))
 			{
 				edges[TOTAL_EDGE].p1 = &gameNodes[i];
 

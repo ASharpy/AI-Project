@@ -30,7 +30,7 @@ public:
 
 	const int grid = 20;
 
-	NodeManager *NM;
+	NodeManager NM;
 
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
 	

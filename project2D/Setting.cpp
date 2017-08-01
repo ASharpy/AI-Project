@@ -11,10 +11,8 @@ Setting::Setting()
 
 	player = Factory::Makeplayer(0, 0);
 
-	NM = new NodeManager();
-
-	NM->createNodes();
-	NM->getEdges();
+	NM.createNodes();
+	NM.getEdges();
 	
 }
 
