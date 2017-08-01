@@ -14,7 +14,7 @@ Player::Player(float PosX, float PosY)
 
 	Xvelocity = 0;
 
-
+	
 
 }
 

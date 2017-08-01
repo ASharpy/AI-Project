@@ -23,7 +23,7 @@ Application2D::~Application2D()
 }
 
 bool Application2D::startup() {
-	//creating the tanks and its parts
+	
 	SETAPP->app = this;
 	Renderer = new aie::Renderer2D();
 	SM = new StateManager();

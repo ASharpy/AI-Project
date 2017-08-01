@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application2D.cpp" />
+    <ClCompile Include="BehaviourState.cpp" />
+    <ClCompile Include="BSM.cpp" />
+    <ClCompile Include="DecisionTree.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
@@ -31,6 +34,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h" />
+    <ClInclude Include="BehaviourState.h" />
+    <ClInclude Include="BehaviourStatetypes.h" />
+    <ClInclude Include="BSM.h" />
+    <ClInclude Include="DecisionTree.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />

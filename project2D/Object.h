@@ -1,6 +1,8 @@
 #pragma once
 #include "Application.h"
 #include "Renderer2D.h"
+#include "BSM.h"
+#include "GameStateTypes.h"
 
 
 class Object
@@ -19,6 +21,8 @@ public:
 	float Yvelocity;
 
 	float Xvelocity;
+
+	BSM * BM;
 
 	Object();
 

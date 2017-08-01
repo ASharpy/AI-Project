@@ -34,7 +34,6 @@ void Setting::update(float deltaTime, StateManager * SM)
 void Setting::render()
 {
 
-
 	std::list<Node*> PATH;
 
 
@@ -65,8 +64,8 @@ void Setting::render()
 	//	}
 	//}
 
-	//Node* tempPtr = PATH.front();
-	//for (auto &var : PATH)
+	Node* tempPtr = PATH.front();
+	for (auto &var : PATH)
 	//{
 	//	if (var == PATH.front())
 	//	{
