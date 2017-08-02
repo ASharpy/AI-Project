@@ -15,8 +15,12 @@ Setting::Setting()
 	NM.createNodes();
 	NM.getEdges();
 	
+	//player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
 	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
-	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
+	
+	player2->BM->pushBehaveState(SEEK);
+	player->BM->pushBehaveState(SEEK);
+
 
 }
 
@@ -30,17 +34,14 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-
-	player->BM->updateBehaveState(deltaTime);
 	player2->BM->updateBehaveState(deltaTime);
+	player->BM->updateBehaveState(deltaTime);
+	
 }
 
 void Setting::render()
 {
 	
-	player->BM->pushBehaveState(SEEK);
-
-	player2->BM->pushBehaveState(SEEK);
 	/*std::list<Node*> PATH;
 
 
@@ -86,15 +87,16 @@ void Setting::render()
 
 
 
-
+	player2->Draw();
 	player->Draw();
 
-	player2->Draw();
+	
 
 }
 Setting::~Setting()
 {
-	delete player;
+	//delete player;
+	delete player2;
 }
 
 
