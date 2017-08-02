@@ -4,16 +4,20 @@
 #include "GameStateTypes.h"
 #include <string>
 #include "Node.h"
-
+#include "BehaviourStatetypes.h"
+#include "SeekState.h"
 
 Setting::Setting()
 {
 
 	player = Factory::Makeplayer(0, 0);
-
+	player2 = Factory::Makeplayer(30, 30);
 	NM.createNodes();
 	NM.getEdges();
 	
+	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
+	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
+
 }
 
 
@@ -27,17 +31,20 @@ Setting * Setting::getInstance()
 void Setting::update(float deltaTime, StateManager * SM)
 {
 
-	
-	
+	player->BM->updateBehaveState(deltaTime);
+	player2->BM->updateBehaveState(deltaTime);
 }
 
 void Setting::render()
 {
+	
+	player->BM->pushBehaveState(SEEK);
 
-	std::list<Node*> PATH;
+	player2->BM->pushBehaveState(SEEK);
+	/*std::list<Node*> PATH;
 
 
-	bool path = false;
+	bool path = false;*/
 
 
 	//PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
@@ -64,8 +71,8 @@ void Setting::render()
 	//	}
 	//}
 
-	Node* tempPtr = PATH.front();
-	for (auto &var : PATH)
+	/*Node* tempPtr = PATH.front();
+	for (auto &var : PATH)*/
 	//{
 	//	if (var == PATH.front())
 	//	{
@@ -82,7 +89,7 @@ void Setting::render()
 
 	player->Draw();
 
-
+	player2->Draw();
 
 }
 Setting::~Setting()

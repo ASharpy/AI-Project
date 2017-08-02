@@ -10,11 +10,11 @@ BSM::~BSM()
 {
 }
 
-void BSM::updateState(float DT)
+void BSM::updateBehaveState(float DT)
 {
-	docommands();
+	doBehavecommands();
 
-	for (auto &var : activeStates)
+	for (auto &var : activeBehaveStates)
 	{
 		var->update(DT);
 	}
@@ -23,58 +23,58 @@ void BSM::updateState(float DT)
 
 void BSM::registerBState(int ID, BehaviourState * bState)
 {
-	commands command;
-	command.id = ID;
-	command.command = commandTypes::REGISTER;
-	command.commandState = bState;
-	commandList.push_back(command);
+	Behaviourcommands tempCommand;
+	tempCommand.id = ID;
+	tempCommand.Behavecommand = BehavecommandTypes::REGISTER;
+	tempCommand.BehavecommandState = bState;
+	BehavecommandList.push_back(tempCommand);
 
 }
 
-void BSM::pushState(int ID)
+void BSM::pushBehaveState(int ID)
 {
-	commands command;
-	command.id = ID;
-	command.command = commandTypes::PUSH;
-	command.commandState = nullptr;
-	commandList.push_back(command);
+	Behaviourcommands tempCommand;
+	tempCommand.id = ID;
+	tempCommand.Behavecommand = BehavecommandTypes::PUSH;
+	tempCommand.BehavecommandState = nullptr;
+	BehavecommandList.push_back(tempCommand);
 
 }
-void BSM::popState()
+void BSM::popBehaveState()
 {
-	commands command;
-	command.id = -1;
-	command.command = commandTypes::POP;
-	command.commandState = nullptr;
-	commandList.push_back(command);
+	Behaviourcommands tempCommand;
+	tempCommand.id = -1;
+	tempCommand.Behavecommand = BehavecommandTypes::POP;
+	tempCommand.BehavecommandState = nullptr;
+	BehavecommandList.push_back(tempCommand);
 }
 
-BehaviourState * BSM::getTopState()
+BehaviourState * BSM::getTopBehaveState()
 {
-	return activeStates.back();
+	return activeBehaveStates.back();
 }
 
-void BSM::docommands()
+void BSM::doBehavecommands()
 {
-	for (auto var : commandList)
+	for (auto var : BehavecommandList)
 	{
-		commands & command = var;
+		Behaviourcommands & command = var;
 
-		switch (command.command)
+		switch (command.Behavecommand)
 		{
-		case commandTypes::REGISTER:
-			doRegoBStates(command.id, command.commandState);
+		case BehavecommandTypes::REGISTER:
+			doRegoBStates(command.id, command.BehavecommandState);
 			break;
-		case commandTypes::POP:
-			doPopState();
+		case BehavecommandTypes::POP:
+			doPopBehaveState();
 			break;
-		case commandTypes::PUSH:
-			doPushState(command.id);
+		case BehavecommandTypes::PUSH:
+			doPushBehaveState(command.id);
 			break;
 
 		}
 	}
-	commandList.clear();
+	BehavecommandList.clear();
 }
 
 void BSM::doRegoBStates(int id, BehaviourState * bStates)
@@ -82,14 +82,14 @@ void BSM::doRegoBStates(int id, BehaviourState * bStates)
 	RegoState.insert(std::pair<int, BehaviourState*>(id, bStates));
 }
 
-void BSM::doPopState()
+void BSM::doPopBehaveState()
 {
-	activeStates.pop_back();
+	activeBehaveStates.pop_back();
 }
 
-void BSM::doPushState(int id)
+void BSM::doPushBehaveState(int id)
 {
-	activeStates.push_back(RegoState[id]);
+	activeBehaveStates.push_back(RegoState[id]);
 }
 
 

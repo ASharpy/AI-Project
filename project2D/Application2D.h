@@ -43,7 +43,7 @@ public:
 	aie::Font * font;
 
 protected:
-	BehaviourState *BSM;
+	
 
 	StateManager *SM;
 

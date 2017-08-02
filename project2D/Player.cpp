@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <iostream>
+#include "BSM.h"
 
 
 Player::Player(float PosX, float PosY)
@@ -14,13 +15,14 @@ Player::Player(float PosX, float PosY)
 
 	Xvelocity = 0;
 
-	
+	BM = new BSM();
 
 }
 
 
 Player::~Player()
 {
+	delete BM;
 }
 //
 //void Player::setup(aie::Renderer2D * m_2dRenderer, aie::Texture * m_texture, aie::Texture * m_paddleTexture)

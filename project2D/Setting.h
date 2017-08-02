@@ -33,7 +33,8 @@ public:
 	NodeManager NM;
 
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
-	
+	Object *player;
+	Object * player2;
 
 private:
 	Setting();
@@ -45,7 +46,7 @@ private:
 
 	aie::Font * font;
 
-	Object *player;
+	
 
 	/*
 	AABB collision to see if two rectangles are colliding 

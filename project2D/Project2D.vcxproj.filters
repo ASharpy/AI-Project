@@ -73,14 +73,17 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Object Creation</Filter>
     </ClCompile>
-    <ClCompile Include="DecisionTree.cpp">
-      <Filter>Decision Tree</Filter>
-    </ClCompile>
     <ClCompile Include="BehaviourState.cpp">
       <Filter>Behaviour StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="BSM.cpp">
       <Filter>Behaviour StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekState.cpp">
+      <Filter>Behaviour StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekDecision.cpp">
+      <Filter>Decision Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +138,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Object Creation</Filter>
     </ClInclude>
-    <ClInclude Include="DecisionTree.h">
-      <Filter>Decision Tree</Filter>
-    </ClInclude>
     <ClInclude Include="BehaviourState.h">
       <Filter>Behaviour StateMachine</Filter>
     </ClInclude>
@@ -146,6 +146,12 @@
     </ClInclude>
     <ClInclude Include="BehaviourStatetypes.h">
       <Filter>Behaviour StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekState.h">
+      <Filter>Behaviour StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekDecision.h">
+      <Filter>Decision Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

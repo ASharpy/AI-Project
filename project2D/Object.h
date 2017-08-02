@@ -3,7 +3,8 @@
 #include "Renderer2D.h"
 #include "BSM.h"
 #include "GameStateTypes.h"
-
+#include "Node.h"
+#include "List.h"
 
 class Object
 {
@@ -23,6 +24,10 @@ public:
 	float Xvelocity;
 
 	BSM * BM;
+
+	Object * target;
+
+	std::list<Node*> path;
 
 	Object();
 

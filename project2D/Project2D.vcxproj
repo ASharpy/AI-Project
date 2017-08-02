@@ -14,7 +14,6 @@
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="BehaviourState.cpp" />
     <ClCompile Include="BSM.cpp" />
-    <ClCompile Include="DecisionTree.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
@@ -27,6 +26,8 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SeekDecision.cpp" />
+    <ClCompile Include="SeekState.cpp" />
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="State.cpp" />
@@ -37,7 +38,6 @@
     <ClInclude Include="BehaviourState.h" />
     <ClInclude Include="BehaviourStatetypes.h" />
     <ClInclude Include="BSM.h" />
-    <ClInclude Include="DecisionTree.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
@@ -50,6 +50,8 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SeekDecision.h" />
+    <ClInclude Include="SeekState.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SplashState.h" />
     <ClInclude Include="State.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <vector>
 #include <map>
 
 class BehaviourState;
@@ -7,12 +8,15 @@ class BehaviourState;
 class BSM
 {
 public:
+	BSM();
+
+	~BSM();
 	/*
 	calls the update function for all active state
 	@param deltaTime bootstraps delta time
 	no returns
 	*/
-	void updateState(float DT);
+	void updateBehaveState(float DT);
 
 	/*
 	adds the register command to the command list
@@ -26,16 +30,16 @@ public:
 	adds the push command to the command list
 	no returns
 	*/
-	void pushState(int ID);
+	void pushBehaveState(int ID);
 
 	/*
 	adds the pop command to the command list
 	no returns
 	*/
-	void popState();
+	void popBehaveState();
 
 
-	BehaviourState * getTopState();
+	BehaviourState * getTopBehaveState();
 
 private:
 
@@ -43,26 +47,26 @@ private:
 	std::map<int, BehaviourState*> RegoState;
 
 	//Link list for active states this defines what the programm is currently in
-	std::list<BehaviourState*> activeStates;
+	std::list<BehaviourState*> activeBehaveStates;
 
-	enum class commandTypes{REGISTER, PUSH,POP};
+	enum class BehavecommandTypes{REGISTER, PUSH,POP};
 
-	struct commands
+	struct Behaviourcommands
 	{
-		commandTypes command;
+		BehavecommandTypes Behavecommand;
 		int id;
-		BehaviourState * commandState;
+		BehaviourState * BehavecommandState;
 
 	};
 	
 	//link list of the types of commands to do to the states
-	std::list<commands> commandList;
+	std::vector<Behaviourcommands> BehavecommandList;
 
 	/*
 	executes all the commands that were added to the command list
 	no returns
 	*/
-	void docommands();
+	void doBehavecommands();
 	
 	/*
 	adds all the states that need to be registered to the map
@@ -74,18 +78,16 @@ private:
 	pop back all active states
 	no returns
 	*/
-	void doPopState();
+	void doPopBehaveState();
 
 	/*
 	pushes the active state to the list
 	@param ID the key for the state (the enum)
 	no returns
 	*/
-	void doPushState(int id);
+	void doPushBehaveState(int id);
 
-	BSM();
 
-	~BSM();
 
 
 };

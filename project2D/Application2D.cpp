@@ -10,8 +10,7 @@
 #include "SplashState.h"
 #include "PauseState.h"
 #include "Exception.h"
-#include "BehaviourState.h"
-#include "BehaviourStatetypes.h"
+
 
 using namespace StateManagement;
 Application2D::Application2D()
@@ -37,6 +36,7 @@ bool Application2D::startup() {
 	SM->registerState(LOADING, new LoadState(this, SM));
 	SM->registerState(MENU, new MenuState(this, SM));
 	SM->pushState(SPLASH);
+	
 	return true;
 }
 
