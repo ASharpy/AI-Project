@@ -15,7 +15,7 @@ Setting::Setting()
 	NM.createNodes();
 	NM.getEdges();
 	
-	//player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
+	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
 	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
 	
 	player2->BM->pushBehaveState(SEEK);
