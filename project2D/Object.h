@@ -37,7 +37,6 @@ public:
 	//virtual update function for all children of the object class
 	virtual void Update(float DT);
 
-	virtual void render();
 	virtual ~Object();
 
 };

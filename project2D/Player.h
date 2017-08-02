@@ -7,7 +7,6 @@ public:
 	Player(float PosX, float PosY);
 	~Player();
 
-	
 	//void setup(aie::Renderer2D* m_2dRenderer, aie::Texture* m_texture, aie::Texture* m_paddleTexture);
 
 	//Object paddle;
