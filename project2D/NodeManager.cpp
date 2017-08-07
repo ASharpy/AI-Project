@@ -66,7 +66,7 @@ NodeManager::~NodeManager()
 
 
 void NodeManager::getEdges()
-{
+ {
 	Edge* edge;
 	for (int i = 0; i < TOTAL_NODES; i++)
 	{
@@ -74,7 +74,7 @@ void NodeManager::getEdges()
 		{
 			if (CircleCheck(&gameNodes[i], &gameNodes[j], (20 + 20)*0.9f))
 			{
-				edges[TOTAL_EDGE].p1 = &gameNodes[i];
+  				edges[TOTAL_EDGE].p1 = &gameNodes[i];
 
 				edges[TOTAL_EDGE].p2 = &gameNodes[j];
 
@@ -85,6 +85,8 @@ void NodeManager::getEdges()
 				gameNodes[i].edgelist.push_back(edge);
 
 				gameNodes[j].edgelist.push_back(edge);
+
+				//Node* node = &gameNodes[37];
 
 				TOTAL_EDGE++;
 			}
@@ -243,34 +245,40 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		for (auto &var : current->edgelist)
 		{
+			Node* temp = var->p1;
 
+			if (var->p1 == current)
+			{
+				temp = var->p2;
+			}
+			
 
-			if (var->p1->iswalkable == false)
+			if (temp->iswalkable == false)
 			{
 				continue;
 			}
-			if (std::find(closed.begin(), closed.end(), var->p1) != closed.end())
+			if (std::find(closed.begin(), closed.end(), temp) != closed.end())
 			{
 				continue;
 			}
 			//if its not in the open set already, chuck it in for comparision(ie, new nodes are being added to the open set with each iteration.)
-			else if (std::find(open.begin(), open.end(), var->p1) == open.end())
+			else if (std::find(open.begin(), open.end(), temp) == open.end())
 			{
-				open.push_front(var->p1);
-				var->p1->camefrom = current;
+				open.push_front(temp);
+				temp->camefrom = current;
 
 			}
 
 
-			tenative_gscore = current->gScore + calcDistance(current, var->p1);
-			if (tenative_gscore >= var->p1->gScore)
+			tenative_gscore = current->gScore + calcDistance(current, temp);
+			if (tenative_gscore >= temp->gScore)
 			{
 				continue;
 			}
 
-			var->p1->camefrom = current;
-			var->p1->setgScore(tenative_gscore);
-			var->p1->setfScore(var->p1->camefrom->gScore + calcHeuristic(var->p1, End));
+			temp->camefrom = current;
+			temp->setgScore(tenative_gscore);
+			temp->setfScore(temp->camefrom->gScore + calcHeuristic(temp, End));
 
 		}
 		

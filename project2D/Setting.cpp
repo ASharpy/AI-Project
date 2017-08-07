@@ -43,7 +43,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
 
-	//player2->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
+	player2->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
 
 
 	player2->BM->updateBehaveState(deltaTime);
@@ -62,9 +62,17 @@ void Setting::render()
 
 	//PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
 	
+	Node * node = &NM.gameNodes[37];
 
-	
+	for (int i = 0; i < NM.TOTAL_EDGE; i++)
+	{
+		int edgeNum = 0;
 
+		{
+			SETAPP->app->Renderer->drawLine(NM.edges[i].p1->posX, NM.edges[i].p1->posY, NM.edges[i].p2->posX, NM.edges[i].p2->posY);
+
+		}
+	}
 	//Node* tempPtr = player->path.front();
 	//for (auto &var : player->path)
 	//{
@@ -83,17 +91,17 @@ void Setting::render()
 
 
 	//int colour = 0;
-	//for (int i = 0; i < NM.TOTAL_NODES; i++)
-	//{
-	//	
+	for (int i = 0; i < NM.TOTAL_NODES; i++)
+	{
+		
 
-	//	if (NM.gameNodes[i].iswalkable)
-	//	{		
-	//		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
+	if (NM.gameNodes[i].iswalkable)
+	{		
+		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
 
-	//		
-	//	}
-	//}
+			
+	}
+	}
 
 
 
