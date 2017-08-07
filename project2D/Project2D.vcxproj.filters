@@ -14,11 +14,14 @@
     <Filter Include="Grid">
       <UniqueIdentifier>{5ef423b3-84f9-4396-971f-df3b92d41c92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Decision Tree">
-      <UniqueIdentifier>{c94c858d-15e1-4006-9c72-9aaa39d3356c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Behaviour StateMachine">
       <UniqueIdentifier>{7915dc61-e1f4-4dcf-a082-1700df54ef15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behaviour StateMachine\Decision Tree">
+      <UniqueIdentifier>{c94c858d-15e1-4006-9c72-9aaa39d3356c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behaviours">
+      <UniqueIdentifier>{9c23d927-70b6-43c5-8c6f-d1666da522e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +86,16 @@
       <Filter>Behaviour StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="SeekDecision.cpp">
-      <Filter>Decision Tree</Filter>
+      <Filter>Behaviour StateMachine\Decision Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Object Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviours.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>Behaviours</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +163,19 @@
       <Filter>Behaviour StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="SeekDecision.h">
-      <Filter>Decision Tree</Filter>
+      <Filter>Behaviour StateMachine\Decision Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Object Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="real.h">
+      <Filter>Object Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>Behaviours</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,23 +5,21 @@
 #include "GameStateTypes.h"
 #include "Node.h"
 #include "List.h"
+#include "Vector2.h"
+#include "Behaviours.h"
 
 class Object
 {
 public:
 
 // member variables for different objects
-	float posX;
+	Vector2 position;
 
-	float posY;
+	Vector2 velcocity;
 
 	//float wide;
 
 	float width;
-
-	float Yvelocity;
-
-	float Xvelocity;
 
 	BSM * BM;
 
@@ -29,6 +27,7 @@ public:
 
 	std::list<Node*> path;
 
+	std::vector<Behaviours*> behaviourList;
 	Object();
 
 	//virtual draws the paddles and ball objects

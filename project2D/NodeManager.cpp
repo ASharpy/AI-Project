@@ -39,10 +39,10 @@ void NodeManager::createNodes()
 
 int NodeManager::index(int posX, int posY)
 {
-	posX = posX / GRIDLENGTH;
-	posY = posY / GRIDLENGTH;
+	posX = posX / 20;
+	posY = posY / 20;
 
-	int i = posX * (SCREENY / GRIDLENGTH) + posY;
+	int i = posX * (720 / 20) + posY;
 
 	return i;
 

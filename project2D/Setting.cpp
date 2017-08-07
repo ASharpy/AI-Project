@@ -6,14 +6,16 @@
 #include "Node.h"
 #include "BehaviourStatetypes.h"
 #include "SeekState.h"
+#include "Behaviours.h"
+#include "Seek.h"
 
 Setting::Setting()
 {
-
-	player = Factory::Makeplayer(0, 0);
-	player2 = Factory::Makeplayer(30, 30);
 	NM.createNodes();
 	NM.getEdges();
+	player = Factory::Makeplayer(20, 20);
+	player2 = Factory::Makeplayer(2000, 50);
+	
 	
 	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
 	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
@@ -21,7 +23,7 @@ Setting::Setting()
 	player2->BM->pushBehaveState(SEEK);
 	player->BM->pushBehaveState(SEEK);
 
-
+	player->behaviourList.push_back(new Seek(player));
 }
 
 
@@ -34,9 +36,19 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
+	player->position = player->velcocity + player->position;
+
+	int playerindex = NM.index((int)player->position.x, (int)player->position.y);
+	int playerindex2 = NM.index((int)player2->position.x, (int)player2->position.y);
+
+	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
+
+	//player2->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
+
+
 	player2->BM->updateBehaveState(deltaTime);
 	player->BM->updateBehaveState(deltaTime);
-	
+
 }
 
 void Setting::render()
@@ -50,9 +62,20 @@ void Setting::render()
 
 	//PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
 	
+
 	
 
+	//Node* tempPtr = player->path.front();
+	//for (auto &var : player->path)
+	//{
+	//	if (var == player->path.front())
+	//	{
+	//		continue;
+	//	}
 
+	//	SETAPP->app->Renderer->drawLine(tempPtr->posX,tempPtr->posY,var->posX,var->posY);
+	//	tempPtr = var;
+	//}
 
 
 	//NM.findNeighbours(&NM.gameNodes[0]);
@@ -70,19 +93,6 @@ void Setting::render()
 
 	//		
 	//	}
-	//}
-
-	/*Node* tempPtr = PATH.front();
-	for (auto &var : PATH)*/
-	//{
-	//	if (var == PATH.front())
-	//	{
-	//		continue;
-	//	}
-	//	
-
-	//SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY, 1.0f, 0);
-	//tempPtr = var;
 	//}
 
 

@@ -5,17 +5,14 @@
 
 Player::Player(float PosX, float PosY)
 {
-	posX = PosX;
-
-	posY = PosY;
+	position = {PosX,PosY};
 
 	width = 15;
 
-	Yvelocity = 0;
-
-	Xvelocity = 0;
+	velcocity = { 10,10 };
 
 	BM = new BSM();
+
 
 }
 
