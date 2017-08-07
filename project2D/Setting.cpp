@@ -14,7 +14,7 @@ Setting::Setting()
 	NM.createNodes();
 	NM.getEdges();
 	player = Factory::Makeplayer(20, 20);
-	player2 = Factory::Makeplayer(2000, 50);
+	player2 = Factory::Makeplayer(300, 100);
 	
 	
 	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));

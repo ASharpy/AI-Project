@@ -245,32 +245,32 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 		{
 
 
-			if (var->p2->iswalkable == false)
+			if (var->p1->iswalkable == false)
 			{
 				continue;
 			}
-			if (std::find(closed.begin(), closed.end(), var->p2) != closed.end())
+			if (std::find(closed.begin(), closed.end(), var->p1) != closed.end())
 			{
 				continue;
 			}
 			//if its not in the open set already, chuck it in for comparision(ie, new nodes are being added to the open set with each iteration.)
-			else if (std::find(open.begin(), open.end(), var->p2) == open.end())
+			else if (std::find(open.begin(), open.end(), var->p1) == open.end())
 			{
-				open.push_front(var->p2);
-				var->p2->camefrom = current;
+				open.push_front(var->p1);
+				var->p1->camefrom = current;
 
 			}
 
 
-			tenative_gscore = current->gScore + calcDistance(current, var->p2);
-			if (tenative_gscore >= var->p2->gScore)
+			tenative_gscore = current->gScore + calcDistance(current, var->p1);
+			if (tenative_gscore >= var->p1->gScore)
 			{
 				continue;
 			}
 
-			var->p2->camefrom = current;
-			var->p2->setgScore(tenative_gscore);
-			var->p2->setfScore(var->p2->camefrom->gScore + calcHeuristic(var->p2, End));
+			var->p1->camefrom = current;
+			var->p1->setgScore(tenative_gscore);
+			var->p1->setfScore(var->p1->camefrom->gScore + calcHeuristic(var->p1, End));
 
 		}
 		
