@@ -162,132 +162,143 @@ bool NodeManager::CircleCheck(Node * node1, Node * node2, float Dist)
 
 std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 {
-	std::list<Node*>closed;
 
-	std::list<Node*>open;
-
-	
-
-	float tenative_gscore;
-
-
-
-	open.push_front(Start);
-
-	for (int i = 0; i < TOTAL_NODES; i++)
+	if (End->iswalkable )
 	{
 
-		gameNodes[i].setgScore(INFINITY);
 
-		gameNodes[i].setHscore(INFINITY);
+		std::list<Node*>closed;
 
-		gameNodes[i].setfScore(INFINITY);
-
-		gameNodes[i].camefrom = nullptr;
-	}
-
-	
-
-	Start->setgScore(0);
-
-	Start->setHscore(calcHeuristic(Start, End));
-
-	Start->setfScore(Start->hScore + Start->gScore);
-	
-	Node * current = Start;
+		std::list<Node*>open;
 
 
 
-	while (!open.empty())
-	{
-		float start = Start->fScore;
+		float tenative_gscore;
 
-		float min;
 
-		Node* search = open.front();
-		
-		for (auto &var : open)
+
+		open.push_front(Start);
+
+		for (int i = 0; i < TOTAL_NODES; i++)
 		{
-			if (search->fScore > var->fScore)
+
+			gameNodes[i].setgScore(INFINITY);
+
+			gameNodes[i].setHscore(INFINITY);
+
+			gameNodes[i].setfScore(INFINITY);
+
+			gameNodes[i].camefrom = nullptr;
+		}
+
+
+
+		Start->setgScore(0);
+
+		Start->setHscore(calcHeuristic(Start, End));
+
+		Start->setfScore(Start->hScore + Start->gScore);
+
+		Node * current = Start;
+
+
+
+		while (!open.empty())
+		{
+			float start = Start->fScore;
+
+			float min;
+
+			Node* search = open.front();
+
+			for (auto &var : open)
 			{
-				search = var;
-			}
-			else if (search->fScore == var->fScore)
-			{
-				if (search->hScore > var->hScore)
+				if (search->fScore > var->fScore)
 				{
 					search = var;
 				}
-				else if (search->hScore == var->hScore)
+				else if (search->fScore == var->fScore)
+				{
+					if (search->hScore > var->hScore)
+					{
+						search = var;
+					}
+					else if (search->hScore == var->hScore)
+					{
+						continue;
+
+					}
+				}
+
+			}
+
+			current = search;
+
+			open.remove(current);
+			closed.push_front(current);
+
+			if (std::find(closed.begin(), closed.end(), End) != closed.end())
+			{
+				return reconstructPath(End);
+			}
+
+
+			//pops them from the open list to the closed list.
+
+
+
+
+
+
+			for (auto &var : current->edgelist)
+			{
+				Node* temp = var->p1;
+
+				if (var->p1 == current)
+				{
+					temp = var->p2;
+				}
+
+
+				if (temp->iswalkable == false)
 				{
 					continue;
+				}
+				if (std::find(closed.begin(), closed.end(), temp) != closed.end())
+				{
+					continue;
+				}
+				//if its not in the open set already, chuck it in for comparision(ie, new nodes are being added to the open set with each iteration.)
+				else if (std::find(open.begin(), open.end(), temp) == open.end())
+				{
+					open.push_front(temp);
+					temp->camefrom = current;
 
 				}
-			}
-
-		}
-
-		current = search;
-
-		open.remove(current);
-		closed.push_front(current);
-
-		if (std::find(closed.begin(), closed.end(), End) != closed.end())
-		{
-			return reconstructPath(End);
-		}
-
-		
-		 //pops them from the open list to the closed list.
-		
 
 
+				tenative_gscore = current->gScore + calcDistance(current, temp);
+				if (tenative_gscore >= temp->gScore)
+				{
+					continue;
+				}
 
-		
-
-		for (auto &var : current->edgelist)
-		{
-			Node* temp = var->p1;
-
-			if (var->p1 == current)
-			{
-				temp = var->p2;
-			}
-			
-
-			if (temp->iswalkable == false)
-			{
-				continue;
-			}
-			if (std::find(closed.begin(), closed.end(), temp) != closed.end())
-			{
-				continue;
-			}
-			//if its not in the open set already, chuck it in for comparision(ie, new nodes are being added to the open set with each iteration.)
-			else if (std::find(open.begin(), open.end(), temp) == open.end())
-			{
-				open.push_front(temp);
 				temp->camefrom = current;
+				temp->setgScore(tenative_gscore);
+				temp->setHscore(calcHeuristic(temp, End));
+				temp->setfScore(temp->camefrom->gScore + temp->hScore);
+				float f = temp->fScore;
 
 			}
-
-
-			tenative_gscore = current->gScore + calcDistance(current, temp);
-			if (tenative_gscore >= temp->gScore)
-			{
-				continue;
-			}
-
-			temp->camefrom = current;
-			temp->setgScore(tenative_gscore);
-			temp->setHscore(calcHeuristic(temp, End));
-			temp->setfScore(temp->camefrom->gScore + temp->hScore);
-			float f = temp->fScore;
 
 		}
-		
 	}
+	else
+	{
+
+		return std::list<Node*>();
 	}
+}
 
 
 	std::list<Node*> NodeManager::reconstructPath(Node * current)

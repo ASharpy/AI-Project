@@ -28,9 +28,6 @@ Setting::Setting()
 	player->behaviourList.push_back(new Seek(player));
 	player2->behaviourList.push_back(new Seek(player2));
 
-	playerindex = NM.index((int)player->position.x, (int)player->position.y);
-	player2index = NM.index((int)player2->position.x, (int)player2->position.y);
-
 }
 
 
@@ -43,8 +40,9 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-
-
+	float previousPosX = enemy->position.x;
+	float previousPosY = enemy->position.y;
+	
 	
 	//std::cout << dist << std::endl;
 
@@ -54,6 +52,8 @@ void Setting::update(float deltaTime, StateManager * SM)
 	player->position = (player->velcocity * deltaTime) + player->position;
 	player2->position = (player2->velcocity * deltaTime) + player2->position;
 
+
+	enemy->position = (enemy->velcocity * deltaTime) + enemy->position;
 
 
 
@@ -65,10 +65,24 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 		player2index = NM.index((int)player2->position.x, (int)player2->position.y);
 
-		player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[player2index]);
+		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
 
-		player->path.pop_back();
-		player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[500]);
+		player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
+
+		
+		player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
+
+		if (player->path.size() > 0)
+		{
+			player->path.pop_back();
+
+		}
+		if (player2->path.size() > 0)
+		{
+			player2->path.pop_back();
+
+		}
+		
 		timer = 1.0;
 		
 		
@@ -82,6 +96,69 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 	player2->BM->updateBehaveState(deltaTime);
 	player->BM->updateBehaveState(deltaTime);
+	
+	
+
+
+
+	
+		if (app->input->isKeyDown(aie::INPUT_KEY_A))
+		{
+
+			if (enemy->velcocity.x < -300)
+			{
+				enemy->velcocity.x = enemy->velcocity.x - 0;
+
+			}
+			else
+			{
+				enemy->velcocity.x = enemy->velcocity.x - 10;
+
+			}
+		}
+
+		if (app->input->isKeyDown(aie::INPUT_KEY_D))
+		{
+
+			if (enemy->velcocity.x > 300)
+			{
+				enemy->velcocity.x = enemy->velcocity.x - 0;
+
+			}
+			else
+			{
+				enemy->velcocity.x = enemy->velcocity.x + 10;
+
+			}
+		}
+
+		if (app->input->isKeyDown(aie::INPUT_KEY_W))
+		{
+			if (enemy->velcocity.y > 300)
+			{
+				enemy->velcocity.y = enemy->velcocity.y - 0;
+
+			}
+			else
+			{
+				enemy->velcocity.y = enemy->velcocity.y + 10;
+
+			}
+		}
+
+		if (app->input->isKeyDown(aie::INPUT_KEY_S))
+		{
+			if (enemy->velcocity.y < -300)
+			{
+				enemy->velcocity.y = enemy->velcocity.y - 0;
+
+			}
+			else
+			{
+				enemy->velcocity.y = enemy->velcocity.y - 10;
+
+			}
+		}
 	
 }
 

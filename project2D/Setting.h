@@ -22,7 +22,9 @@ public:
 
 	int playerindex;
 
-		int player2index;
+	int player2index;
+
+	int enemyindex;
 
 	float timer = 1.0;
 

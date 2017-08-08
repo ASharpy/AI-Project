@@ -9,6 +9,7 @@ Enemy::Enemy(float PosX, float PosY)
 	position.y = PosY;
 
 	width = 15;
+	velcocity = { 0,0 };
 }
 
 
