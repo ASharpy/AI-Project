@@ -5,7 +5,7 @@ class Enemy : public Object
 
 public:
 
-	Enemy();
+	Enemy(float PosX, float PosY);
 
 	virtual ~Enemy();
 };

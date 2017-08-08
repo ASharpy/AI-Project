@@ -11,7 +11,7 @@ Object * Factory::Makeplayer(float PosX, float PosY)
 
 Object * Factory::MakeEnemy(float PosX, float PosY)
 {
-	return nullptr;
+	return new Enemy(PosX,PosY);
 }
 
 Factory::Factory()

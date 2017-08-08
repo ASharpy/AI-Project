@@ -229,6 +229,9 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		current = search;
 
+		open.remove(current);
+		closed.push_front(current);
+
 		if (std::find(closed.begin(), closed.end(), End) != closed.end())
 		{
 			return reconstructPath(End);
@@ -236,8 +239,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		
 		 //pops them from the open list to the closed list.
-		open.remove(current);
-		closed.push_front(current);
+		
 
 
 
@@ -278,7 +280,9 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 			temp->camefrom = current;
 			temp->setgScore(tenative_gscore);
-			temp->setfScore(temp->camefrom->gScore + calcHeuristic(temp, End));
+			temp->setHscore(calcHeuristic(temp, End));
+			temp->setfScore(temp->camefrom->gScore + temp->hScore);
+			float f = temp->fScore;
 
 		}
 		

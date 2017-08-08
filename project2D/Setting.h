@@ -20,7 +20,11 @@ public:
 
 	void update(float deltaTime, StateManager * SM);
 
-	
+	int playerindex;
+
+		int player2index;
+
+	float timer = 1.0;
 
 	void render();
 
@@ -33,9 +37,14 @@ public:
 	NodeManager NM;
 
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
+
 	Object *player;
+
 	Object * player2;
 
+	Object * player3;
+
+	Object * enemy;
 private:
 	Setting();
 	~Setting();

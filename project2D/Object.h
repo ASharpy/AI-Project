@@ -30,6 +30,10 @@ public:
 	std::vector<Behaviours*> behaviourList;
 	Object();
 
+	float xDist;
+	float yDist;
+
+	float playerDistance(Vector2 player2);
 	//virtual draws the paddles and ball objects
 	virtual void Draw();
 	

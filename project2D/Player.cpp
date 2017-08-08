@@ -5,6 +5,7 @@
 
 Player::Player(float PosX, float PosY)
 {
+	
 	position = {PosX,PosY};
 
 	width = 15;
@@ -13,7 +14,8 @@ Player::Player(float PosX, float PosY)
 
 	BM = new BSM();
 
-
+	
+	//int playerindex2 = NM.index((int)player2->position.x, (int)player2->position.y);
 }
 
 
@@ -21,6 +23,9 @@ Player::~Player()
 {
 	delete BM;
 }
+
+
+
 //
 //void Player::setup(aie::Renderer2D * m_2dRenderer, aie::Texture * m_texture, aie::Texture * m_paddleTexture)
 //{

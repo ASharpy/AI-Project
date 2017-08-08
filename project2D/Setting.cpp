@@ -14,9 +14,11 @@ Setting::Setting()
 	NM.createNodes();
 	NM.getEdges();
 	player = Factory::Makeplayer(20, 20);
-	player2 = Factory::Makeplayer(300, 100);
-	
-	
+	player2 = Factory::Makeplayer(300, 300);
+	player3 = Factory::Makeplayer(400, 400);
+	enemy = Factory::MakeEnemy(30, 30);
+
+
 	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
 	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
 	
@@ -24,6 +26,11 @@ Setting::Setting()
 	player->BM->pushBehaveState(SEEK);
 
 	player->behaviourList.push_back(new Seek(player));
+	player2->behaviourList.push_back(new Seek(player2));
+
+	playerindex = NM.index((int)player->position.x, (int)player->position.y);
+	player2index = NM.index((int)player2->position.x, (int)player2->position.y);
+
 }
 
 
@@ -36,23 +43,53 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-	player->position = player->velcocity + player->position;
 
-	int playerindex = NM.index((int)player->position.x, (int)player->position.y);
-	int playerindex2 = NM.index((int)player2->position.x, (int)player2->position.y);
 
-	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
+	
+	//std::cout << dist << std::endl;
 
-	player2->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[playerindex2]);
+	
+	timer = timer - deltaTime;
+
+	player->position = (player->velcocity * deltaTime) + player->position;
+	player2->position = (player2->velcocity * deltaTime) + player2->position;
+
+
+
+
+	if (timer <= 0)
+	{
+
+
+		playerindex = NM.index((int)player->position.x, (int)player->position.y);
+
+		player2index = NM.index((int)player2->position.x, (int)player2->position.y);
+
+		player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[player2index]);
+
+		player->path.pop_back();
+		player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[500]);
+		timer = 1.0;
+		
+		
+	/*	if (dist < 1000)
+		{
+		system("pause");
+		}*/
+	}
+	
 
 
 	player2->BM->updateBehaveState(deltaTime);
 	player->BM->updateBehaveState(deltaTime);
-
+	
 }
 
 void Setting::render()
 {
+	
+
+	//	foo = false;
 	
 	/*std::list<Node*> PATH;
 
@@ -61,30 +98,34 @@ void Setting::render()
 
 
 	//PATH = NM.aStar(&NM.gameNodes[37], &NM.gameNodes[1000]);
-	
-	Node * node = &NM.gameNodes[37];
 
-	for (int i = 0; i < NM.TOTAL_EDGE; i++)
+	//Node * node = &NM.gameNodes[37];
+
+	//for (int i = 0; i < NM.TOTAL_EDGE; i++)
+	//{
+	//	int edgeNum = 0;
+
+	//	{
+	//		SETAPP->app->Renderer->drawLine(NM.edges[i].p1->posX, NM.edges[i].p1->posY, NM.edges[i].p2->posX, NM.edges[i].p2->posY);
+
+	//	}
+	//}
+	if (player->path.size() > 0)
 	{
-		int edgeNum = 0;
 
+
+		Node* tempPtr = player->path.front();
+		for (auto &var : player->path)
 		{
-			SETAPP->app->Renderer->drawLine(NM.edges[i].p1->posX, NM.edges[i].p1->posY, NM.edges[i].p2->posX, NM.edges[i].p2->posY);
+			if (var == player->path.front())
+			{
+				continue;
+			}
 
+			SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY);
+			tempPtr = var;
 		}
 	}
-	//Node* tempPtr = player->path.front();
-	//for (auto &var : player->path)
-	//{
-	//	if (var == player->path.front())
-	//	{
-	//		continue;
-	//	}
-
-	//	SETAPP->app->Renderer->drawLine(tempPtr->posX,tempPtr->posY,var->posX,var->posY);
-	//	tempPtr = var;
-	//}
-
 
 	//NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
@@ -93,28 +134,36 @@ void Setting::render()
 	//int colour = 0;
 	for (int i = 0; i < NM.TOTAL_NODES; i++)
 	{
-		
 
-	if (NM.gameNodes[i].iswalkable)
-	{		
+
+		if (NM.gameNodes[i].iswalkable == false)
+		{
+			continue;
+		}
 		SETAPP->app->Renderer->drawCircle(NM.gameNodes[i].posX, NM.gameNodes[i].posY, 2);
 
-			
+
 	}
-	}
+
 
 
 
 	player2->Draw();
 	player->Draw();
+	player3->Draw();
+
+	SETAPP->app->Renderer->setRenderColour(0.0f, 1.0f, 0.0f, 1.0f);
+	enemy->Draw();
 
 	
 
 }
 Setting::~Setting()
 {
-	//delete player;
+	delete player;
 	delete player2;
+	delete player3;
+	delete enemy;
 }
 
 

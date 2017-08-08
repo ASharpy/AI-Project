@@ -2,8 +2,13 @@
 
 
 
-Enemy::Enemy()
+Enemy::Enemy(float PosX, float PosY)
 {
+	position.x = PosX;
+
+	position.y = PosY;
+
+	width = 15;
 }
 
 
