@@ -27,7 +27,6 @@ float Object::playerDistance(Vector2 player2)
 
 void Object::Update(float DT)
 {
-
 }
 
 

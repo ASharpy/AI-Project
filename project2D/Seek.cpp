@@ -6,7 +6,8 @@
 Seek::Seek(Object * myself)
 {
 	Myself = myself;
-	//behaviourType = SEEK;
+	behaviourWeight = 1;
+	bTypes = SEEK;
 }
 
 
@@ -14,9 +15,9 @@ Seek::~Seek()
 {
 }
 
-void Seek::update(float deltaTime)
+Vector2 Seek::update(float deltaTime)
 {
-	float speed = 100.0f;
+	float speed = 1;
 
 
 
@@ -54,12 +55,14 @@ void Seek::update(float deltaTime)
 
 				v3.normalise();
 
-				Myself->velcocity = v3 * speed;
+				v3 = v3 * speed * behaviourWeight;
+
+				return v3 ;
 			}
 		}
 		else
 		{
-			Myself->velcocity = { 0,0 };
+			return Vector2{ 0,0 };
 		}
 	
 }

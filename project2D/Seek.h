@@ -12,7 +12,7 @@ public:
 
 
 
-	virtual void update(float deltaTime);
+	virtual Vector2 update(float deltaTime);
 
 };
 

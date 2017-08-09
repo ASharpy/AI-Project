@@ -42,7 +42,7 @@ public:
 
 	NodeManager NM;
 
-	bool playerCircleCheck(Player* player1, Player* player2, float dist);
+	bool playerCircleCheck(Object* player1, Player* player2, float dist);
 
 
 	

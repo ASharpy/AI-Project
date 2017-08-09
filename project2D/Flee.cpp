@@ -7,7 +7,8 @@
 Flee::Flee(Object * myself)
 {
 	Myself = myself;
-	//behaviourType = FLEE;
+	behaviourWeight = 1;
+	bTypes = FLEE;
 }
 
 
@@ -15,7 +16,7 @@ Flee::~Flee()
 {
 }
 
-void Flee::update(float deltaTime)
+Vector2 Flee::update(float deltaTime)
 {
 	NodeManager NM;
 
@@ -29,7 +30,10 @@ void Flee::update(float deltaTime)
 
 	v3.normalise();
 
-	Myself->velcocity = v3 * speed;
+	v3 = v3 * speed * behaviourWeight;
+
+	return v3;
+
 
 
 }

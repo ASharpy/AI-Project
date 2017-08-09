@@ -6,11 +6,10 @@ class Alignment : Behaviours
 public:
 
 	
-	virtual void update(float deltaTime);
+	virtual Vector2 update(float deltaTime);
 	
 	Alignment(Object * myself);
 
-	Vector2 calcAlign(Object * enemy);
 
 	Vector2 point;
 

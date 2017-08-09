@@ -9,6 +9,6 @@ public:
 
 	~Flee();
 
-	virtual void update(float deltaTime);
+	virtual Vector2 update(float deltaTime);
 };
 

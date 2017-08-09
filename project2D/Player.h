@@ -13,8 +13,18 @@ public:
 
 	NodeManager * NM = new NodeManager;
 
-	
+	void seek(float behaviourWeight);
+	void flee();
 
+	int index;
+
+	void update(float deltaTime);
+
+	Vector2 tempvec;
+
+	Vector2 desiredVector;
+
+	int noBehaviour;
 	
 	//void setup(aie::Renderer2D* m_2dRenderer, aie::Texture* m_texture, aie::Texture* m_paddleTexture);
 
