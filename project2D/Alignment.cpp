@@ -26,6 +26,13 @@ Vector2 Alignment::calcAlign(Object * enemy)
 			}
 	}
 	
+	point.x = point.x / neighbourCount;
+	point.y = point.y / neighbourCount;
+
+	point.normalise();
+
+	return point;
+
 	if (neighbourCount == 0)
 	{
 		return Vector2();
