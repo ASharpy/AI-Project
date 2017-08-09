@@ -14,21 +14,27 @@ Setting::Setting()
 {
 	NM.createNodes();
 	NM.getEdges();
-	player = Factory::Makeplayer(500, 500);
-	player2 = Factory::Makeplayer(300, 300);
-	player3 = Factory::Makeplayer(400, 400);
+	players.push_back(new Player(300,300));
+	players.push_back(new Player(200, 200));
+	players.push_back(new Player(400, 400));
+	players.push_back(new Player(500, 500));
+	//players.push_back(new Player(300, 300));
 	enemy = Factory::MakeEnemy(50, 50);
 
+	for (auto &var : players)
+	{
 
-	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
-	player->BM->registerBState(SEEK, new SeekState(this, player->BM));
+
+		var->BM->registerBState(SEEK, new SeekState(this, var->BM));
+		//player->BM->registerBState(SEEK, new SeekState(this, player->BM));
+
+		var->BM->pushBehaveState(SEEK);
+		//player->BM->pushBehaveState(SEEK);
+
+		var->behaviourList.push_back(new Seek(var));
+		//player2->behaviourList.push_back(new Flee(player2));
+	}
 	
-	player2->BM->pushBehaveState(SEEK);
-	player->BM->pushBehaveState(SEEK);
-
-	player->behaviourList.push_back(new Flee(player));
-	player2->behaviourList.push_back(new Flee(player2));
-
 }
 
 
@@ -41,35 +47,32 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-	float previousPosX = enemy->position.x;
-	float previousPosY = enemy->position.y;
 
-	playerindex = NM.index((int)player->position.x, (int)player->position.y);
+	//playerindex = NM.index((int)player->position.x, (int)player->position.y);
 
-	player2index = NM.index((int)player2->position.x, (int)player2->position.y);
+	//player2index = NM.index((int)player2->position.x, (int)player2->position.y);
 
-	enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
+	//enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
 	//std::cout << dist << std::endl;
 
 
-	float dist = NM.calcDistance(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
-	dist = dist / 20;
-	std::cout << dist << std::endl;
+	//float dist = NM.calcDistance(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
+	//dist = dist / 20;
+	//std::cout << dist << std::endl;
 
-	if (dist < 8000)
+	//if (dist < 8000)
+	//{
+	for (auto &var : players)
 	{
-		player2->BM->updateBehaveState(deltaTime);
-		player->BM->updateBehaveState(deltaTime);
+		var->BM->updateBehaveState(deltaTime);
+		var->position = (var->velcocity * deltaTime) + var->position;
 
 	}
-	
+	//}
+
 
 	timer = timer - deltaTime;
-
-	player->position = (player->velcocity * deltaTime) + player->position;
-	player2->position = (player2->velcocity * deltaTime) + player2->position;
-
-
+	
 	enemy->position = (enemy->velcocity * deltaTime) + enemy->position;
 
 
@@ -78,45 +81,45 @@ void Setting::update(float deltaTime, StateManager * SM)
 	{
 
 
-	/*	playerindex = NM.index((int)player->position.x, (int)player->position.y);
+		/*	playerindex = NM.index((int)player->position.x, (int)player->position.y);
 
-		player2index = NM.index((int)player2->position.x, (int)player2->position.y);
+			player2index = NM.index((int)player2->position.x, (int)player2->position.y);
 
-		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);*/
+			enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);*/
 
-	//	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
+			//	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
 
-		
-		//player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
 
-		if (player->path.size() > 0)
-		{
-			player->path.pop_back();
+				//player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
 
-		}
-		if (player2->path.size() > 0)
-		{
-			player2->path.pop_back();
+				//if (player->path.size() > 0)
+				//{
+				//	player->path.pop_back();
 
-		}
-		
+				//}
+				//if (player2->path.size() > 0)
+				//{
+				//	player2->path.pop_back();
+
+				//}
+				//
 		timer = 1.0;
-		
-		
-	/*	if (dist < 1000)
-		{
-		system("pause");
-		}*/
 	}
-	
+
+		/*	if (dist < 1000)
+			{
+			system("pause");
+			}*/
+			//}
 
 
-	
-	
 
 
 
-	
+
+
+
+
 		if (app->input->isKeyDown(aie::INPUT_KEY_A))
 		{
 
@@ -127,7 +130,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 			}
 			else
 			{
-				enemy->velcocity.x = enemy->velcocity.x - 10;
+				enemy->velcocity.x = enemy->velcocity.x - 50;
 
 			}
 		}
@@ -142,7 +145,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 			}
 			else
 			{
-				enemy->velcocity.x = enemy->velcocity.x + 10;
+				enemy->velcocity.x = enemy->velcocity.x + 50;
 
 			}
 		}
@@ -156,7 +159,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 			}
 			else
 			{
-				enemy->velcocity.y = enemy->velcocity.y + 10;
+				enemy->velcocity.y = enemy->velcocity.y + 50;
 
 			}
 		}
@@ -170,12 +173,13 @@ void Setting::update(float deltaTime, StateManager * SM)
 			}
 			else
 			{
-				enemy->velcocity.y = enemy->velcocity.y - 10;
+				enemy->velcocity.y = enemy->velcocity.y - 50;
 
 			}
 		}
-	
-}
+
+	}
+
 
 void Setting::render()
 {
@@ -202,22 +206,22 @@ void Setting::render()
 
 	//	}
 	//}
-	if (player->path.size() > 0)
-	{
+	//if (player->path.size() > 0)
+	//{
 
 
-		Node* tempPtr = player->path.front();
-		for (auto &var : player->path)
-		{
-			if (var == player->path.front())
-			{
-				continue;
-			}
+	//	Node* tempPtr = player->path.front();
+	//	for (auto &var : player->path)
+	//	{
+	//		if (var == player->path.front())
+	//		{
+	//			continue;
+	//		}
 
-			SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY);
-			tempPtr = var;
-		}
-	}
+	//		SETAPP->app->Renderer->drawLine(tempPtr->posX, tempPtr->posY, var->posX, var->posY);
+	//		tempPtr = var;
+	//	}
+	//}
 
 	//NM.findNeighbours(&NM.gameNodes[0]);
 	//NM.calcHeuristic(&NM.gameNodes[1], &NM.gameNodes[5]);
@@ -239,22 +243,40 @@ void Setting::render()
 
 
 
+	for (auto &var : players)
+	{
 
-	player2->Draw();
-	player->Draw();
-	player3->Draw();
 
+		var->Draw();
+	}
 	SETAPP->app->Renderer->setRenderColour(0.0f, 1.0f, 0.0f, 1.0f);
 	enemy->Draw();
 
 	
 
 }
+
+bool Setting::playerCircleCheck(Player * player1, Player * player2, float dist)
+{
+
+	float DistanceX = (player1->position.x - player2->position.y);// *(node1->posX - node2->posX);
+
+	float DistanceY = (player1->position.y - player2->position.y);// *(node1->posY - node2->posY);
+
+	float distance = (DistanceX*DistanceX) + (DistanceY*DistanceY);
+	
+	float SqrDist = distance;
+
+		return SqrDist < (distance * distance);
+	
+}
 Setting::~Setting()
 {
-	delete player;
-	delete player2;
-	delete player3;
+	for (auto &var : players)
+	{
+		delete var;
+	}
+
 	delete enemy;
 }
 

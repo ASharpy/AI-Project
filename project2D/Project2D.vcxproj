@@ -11,10 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Alignment.cpp" />
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="Behaviours.cpp" />
     <ClCompile Include="BehaviourState.cpp" />
     <ClCompile Include="BSM.cpp" />
+    <ClCompile Include="Cohesion.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
@@ -31,6 +33,7 @@
     <ClCompile Include="Seek.cpp" />
     <ClCompile Include="SeekDecision.cpp" />
     <ClCompile Include="SeekState.cpp" />
+    <ClCompile Include="Separation.cpp" />
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="State.cpp" />
@@ -38,11 +41,13 @@
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alignment.h" />
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="Behaviours.h" />
     <ClInclude Include="BehaviourState.h" />
     <ClInclude Include="BehaviourStatetypes.h" />
     <ClInclude Include="BSM.h" />
+    <ClInclude Include="Cohesion.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
@@ -60,6 +65,7 @@
     <ClInclude Include="Seek.h" />
     <ClInclude Include="SeekDecision.h" />
     <ClInclude Include="SeekState.h" />
+    <ClInclude Include="Separation.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SplashState.h" />
     <ClInclude Include="State.h" />

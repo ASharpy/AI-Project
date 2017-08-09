@@ -3,6 +3,7 @@
 #include "Factory.h"
 #include "NodeManager.h"
 
+
 class Application2D;
 #define SETAPP Setting::getInstance()
 #define SCREENX SETAPP->screensizeX
@@ -19,6 +20,8 @@ public:
 	static Setting* getInstance();
 
 	void update(float deltaTime, StateManager * SM);
+
+	std::vector<Player*> players;
 
 	int playerindex;
 
@@ -39,13 +42,18 @@ public:
 
 	NodeManager NM;
 
+	bool playerCircleCheck(Player* player1, Player* player2, float dist);
+
+
+	
+
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
 
-	Object *player;
+	/*Object *player;
 
 	Object * player2;
 
-	Object * player3;
+	Object * player3;*/
 
 	Object * enemy;
 private:
