@@ -10,7 +10,7 @@ Player::Player(float PosX, float PosY)
 
 	width = 15;
 
-	velcocity = { 10,10 };
+	velcocity = { 0,0 };
 
 	BM = new BSM();
 

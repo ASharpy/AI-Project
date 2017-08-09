@@ -97,6 +97,9 @@
     <ClCompile Include="Seek.cpp">
       <Filter>Behaviours</Filter>
     </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -175,6 +178,9 @@
       <Filter>Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="Seek.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
       <Filter>Behaviours</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,15 +8,16 @@
 #include "SeekState.h"
 #include "Behaviours.h"
 #include "Seek.h"
+#include "Flee.h"
 
 Setting::Setting()
 {
 	NM.createNodes();
 	NM.getEdges();
-	player = Factory::Makeplayer(20, 20);
+	player = Factory::Makeplayer(500, 500);
 	player2 = Factory::Makeplayer(300, 300);
 	player3 = Factory::Makeplayer(400, 400);
-	enemy = Factory::MakeEnemy(30, 30);
+	enemy = Factory::MakeEnemy(50, 50);
 
 
 	player2->BM->registerBState(SEEK, new SeekState(this, player2->BM));
@@ -25,8 +26,8 @@ Setting::Setting()
 	player2->BM->pushBehaveState(SEEK);
 	player->BM->pushBehaveState(SEEK);
 
-	player->behaviourList.push_back(new Seek(player));
-	player2->behaviourList.push_back(new Seek(player2));
+	player->behaviourList.push_back(new Flee(player));
+	player2->behaviourList.push_back(new Flee(player2));
 
 }
 
@@ -42,11 +43,27 @@ void Setting::update(float deltaTime, StateManager * SM)
 {
 	float previousPosX = enemy->position.x;
 	float previousPosY = enemy->position.y;
-	
-	
+
+	playerindex = NM.index((int)player->position.x, (int)player->position.y);
+
+	player2index = NM.index((int)player2->position.x, (int)player2->position.y);
+
+	enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
 	//std::cout << dist << std::endl;
 
+
+	float dist = NM.calcDistance(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
+	dist = dist / 20;
+	std::cout << dist << std::endl;
+
+	if (dist < 8000)
+	{
+		player2->BM->updateBehaveState(deltaTime);
+		player->BM->updateBehaveState(deltaTime);
+
+	}
 	
+
 	timer = timer - deltaTime;
 
 	player->position = (player->velcocity * deltaTime) + player->position;
@@ -61,16 +78,16 @@ void Setting::update(float deltaTime, StateManager * SM)
 	{
 
 
-		playerindex = NM.index((int)player->position.x, (int)player->position.y);
+	/*	playerindex = NM.index((int)player->position.x, (int)player->position.y);
 
 		player2index = NM.index((int)player2->position.x, (int)player2->position.y);
 
-		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
+		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);*/
 
-		player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
+	//	player->path = NM.aStar(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
 
 		
-		player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
+		//player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
 
 		if (player->path.size() > 0)
 		{
@@ -94,8 +111,6 @@ void Setting::update(float deltaTime, StateManager * SM)
 	
 
 
-	player2->BM->updateBehaveState(deltaTime);
-	player->BM->updateBehaveState(deltaTime);
 	
 	
 

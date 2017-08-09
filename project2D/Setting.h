@@ -30,6 +30,7 @@ public:
 
 	void render();
 
+	float dist;
 	const int screensizeY = 720;
 
 	const int screensizeX = 1280;

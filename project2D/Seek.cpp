@@ -6,6 +6,7 @@
 Seek::Seek(Object * myself)
 {
 	Myself = myself;
+	//behaviourType = SEEK;
 }
 
 

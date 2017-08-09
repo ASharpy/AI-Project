@@ -13,5 +13,6 @@ public:
 
 
 	virtual void update(float deltaTime);
+
 };
 

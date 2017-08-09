@@ -2,6 +2,14 @@
 
 
 
+void Enemy::seek()
+{
+}
+
+void Enemy::flee()
+{
+}
+
 Enemy::Enemy(float PosX, float PosY)
 {
 	position.x = PosX;

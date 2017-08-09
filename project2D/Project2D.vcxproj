@@ -18,6 +18,7 @@
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Flee.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Flee.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateTypes.h" />
     <ClInclude Include="LoadState.h" />
