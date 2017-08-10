@@ -9,6 +9,7 @@
 #include "Behaviours.h"
 #include "Seek.h"
 #include "Flee.h"
+#include <iostream>
 
 Setting::Setting()
 {
@@ -47,20 +48,36 @@ Setting * Setting::getInstance()
 
 void Setting::update(float deltaTime, StateManager * SM)
 {
-
+	Vector2 prevPos = enemy->position;
 	//playerindex = NM.index((int)player->position.x, (int)player->position.y);
 
 	//player2index = NM.index((int)player2->position.x, (int)player2->position.y);
 
-	enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
+	
 	//std::cout << dist << std::endl;
-
+	
 	for (auto &var : players)
 	{
+		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
 		var->index = NM.index((int)var->position.x, (int)var->position.y);
 
+		dist = NM.calcDistance(&NM.gameNodes[enemyindex], &NM.gameNodes[var->index]);
+		dist /= 20;
+		if (dist < 1000)
+		{
+			var->seek(1.0f);
+		}
+		else
+		{
+			var->seek(0.0f);
+		}
 		
 	}
+	
+	
+
+	
+
 
 	//float dist = NM.calcDistance(&NM.gameNodes[playerindex], &NM.gameNodes[enemyindex]);
 	//dist = dist / 20;
@@ -70,17 +87,32 @@ void Setting::update(float deltaTime, StateManager * SM)
 	//{
 	for (auto &var : players)
 	{
-		var->seek(1.0f);
 		var->update(deltaTime);
 		var->position = (var->velcocity * deltaTime) + var->position;
 
+		if (var->position.x > 1280)
+		{
+			var->position.x = 1280;
+		}
+		if (var->position.x < 0)
+		{
+			var->position.x = 0;
+		}
+		if (var->position.y < 0)
+		{
+			var->position.y = 0;
+		}
+		if (var->position.y > 720)
+		{
+			var->position.y = 720;
+		}
 	}
 	//}
 
 
-	timer = timer - deltaTime;
+	//timer = timer - deltaTime;
 	
-	enemy->position = (enemy->velcocity * deltaTime) + enemy->position;
+
 
 
 	/*
@@ -188,6 +220,26 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 			}
 		}
+
+
+		if (enemy->position.x > 1265)
+		{
+		
+		}
+		if (enemy->position.x < 0)
+		{
+			;
+		}
+		if (enemy->position.y < 0)
+		{
+		
+		}
+		if (enemy->position.y > 705)
+		{
+		
+		}
+
+		enemy->position = (enemy->velcocity * deltaTime) + enemy->position;
 
 	}
 

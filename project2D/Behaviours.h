@@ -22,7 +22,7 @@ public:
 
 	
 
-	float behaviourWeight;
+	float behaviourWeight = 0;
 
 	virtual Vector2 update(float deltaTime) = 0;
 

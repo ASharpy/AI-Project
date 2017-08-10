@@ -109,6 +109,9 @@
     <ClCompile Include="Separation.cpp">
       <Filter>Behaviours</Filter>
     </ClCompile>
+    <ClCompile Include="PathFollowing.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -199,6 +202,9 @@
       <Filter>Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="Separation.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFollowing.h">
       <Filter>Behaviours</Filter>
     </ClInclude>
   </ItemGroup>

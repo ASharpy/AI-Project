@@ -6,8 +6,8 @@
 Seek::Seek(Object * myself)
 {
 	Myself = myself;
-	behaviourWeight = 1;
 	bTypes = SEEK;
+	behaviourWeight = 0;
 }
 
 
@@ -17,52 +17,19 @@ Seek::~Seek()
 
 Vector2 Seek::update(float deltaTime)
 {
-	float speed = 1;
+	NodeManager NM;
 
 
+	float speed = 50.0f;
 
-		if (((Player*)Myself)->path.size() > 0)
-		{
+	Vector2 v1 = Myself->position;
 
+	Vector2 v2 = SETAPP->enemy->position;
+	Vector2 v3 = v2 - v1;
 
-			float distance = 20.0f;
+	v3.normalise();
 
-			float xDist = ((Player*)Myself)->position.x - ((Player*)Myself)->path.back()->posX;
-			float yDist = ((Player*)Myself)->position.y - ((Player*)Myself)->path.back()->posY;
+	v3 = v3 * speed * behaviourWeight;
 
-
-			float x = xDist * xDist;
-			float y = yDist * yDist;
-			float xy = x + y;
-
-			if (xy < distance * distance)
-			{
-				((Player*)Myself)->path.pop_back();
-			}
-
-
-
-
-			if (((Player*)Myself)->path.size() > 0)
-			{
-		
-
-				Vector2 v1 = Myself->position;
-
-				Vector2 v2 = { ((Player*)Myself)->path.back()->posX,((Player*)Myself)->path.back()->posY };
-
-				Vector2 v3 = v2 - v1;
-
-				v3.normalise();
-
-				v3 = v3 * speed * behaviourWeight;
-
-				return v3 ;
-			}
-		}
-		else
-		{
-			return Vector2{ 0,0 };
-		}
-	
+	return v3;
 }

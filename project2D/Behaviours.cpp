@@ -6,7 +6,6 @@
 Behaviours::Behaviours(Object  * myself)
 {
 	Myself = myself;
-	behaviourWeight = 0;
 }
 
 

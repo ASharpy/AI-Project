@@ -36,7 +36,19 @@ void Player::update(float deltaTime)
 	}
 	if (ActiveBehaverCount > 0)
 	{
-		velcocity = desiredVector / ActiveBehaverCount;
+		if (velcocity.x > 200)
+		{
+			velcocity.x = velcocity.x + 0;
+		}
+		if (velcocity.y > 200)
+		{
+			velcocity.y = velcocity.y + 0;
+		}
+		if (velcocity.x < 200 && velcocity.y < 200)
+		{
+			velcocity = desiredVector / ActiveBehaverCount;
+		}
+		
 	}
 }
 
@@ -44,7 +56,7 @@ void Player::seek(float behaviourWeight)
 {
 	for (auto &var : behaviourList)
 	{
-		if (var->bTypes == SEEK)
+		if (var->bTypes == FLEE)
 		{
 			var->behaviourWeight = behaviourWeight;
 		}

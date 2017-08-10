@@ -26,6 +26,9 @@ public:
 	Vector2 operator-(Vector2 & vector) const;
 	Vector2 operator*(const real scalar);
 	Vector2 operator/(const real scalar);
+	//Vector2 operator+=(const real scalar);
+	Vector2 operator=(const real scalar);
+
 
 	friend Vector2 operator*(real scalar, Vector2 &vector) {return vector * scalar;}
 	real dot(Vector2 & other) const;

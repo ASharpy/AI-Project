@@ -7,8 +7,8 @@
 Flee::Flee(Object * myself)
 {
 	Myself = myself;
-	behaviourWeight = 1;
 	bTypes = FLEE;
+	behaviourWeight = 0;
 }
 
 
@@ -21,7 +21,7 @@ Vector2 Flee::update(float deltaTime)
 	NodeManager NM;
 
 
-	float speed = 100.0f;
+	float speed = 50.0f;
 
 	Vector2 v1 = Myself->position;
 

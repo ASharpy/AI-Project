@@ -28,6 +28,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeManager.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PathFollowing.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Seek.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeManager.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PathFollowing.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="real.h" />
