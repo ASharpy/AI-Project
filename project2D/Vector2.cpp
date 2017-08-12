@@ -54,6 +54,11 @@ Vector2 Vector2::operator/(const real scalar)
 	return Vector2(x / scalar, y / scalar);
 }
 
+Vector2 Vector2::operator=(const real scalar)
+{
+	return Vector2(scalar,scalar);
+}
+
 real Vector2::dot(Vector2 & other) const
 {
 	real Xdot = x * other.x;

@@ -24,6 +24,11 @@ public:
 
 	Vector2 desiredVector;
 
+
+	float minSpeed = 10.0f;
+	
+	float maxSpeed = 100.0f; 
+
 	int noBehaviour;
 	
 	//void setup(aie::Renderer2D* m_2dRenderer, aie::Texture* m_texture, aie::Texture* m_paddleTexture);

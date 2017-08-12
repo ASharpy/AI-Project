@@ -21,7 +21,7 @@ Vector2 Flee::update(float deltaTime)
 	NodeManager NM;
 
 
-	float speed = 50.0f;
+	float speed = 10.0f;
 
 	Vector2 v1 = Myself->position;
 

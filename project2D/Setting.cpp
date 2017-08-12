@@ -67,10 +67,10 @@ void Setting::update(float deltaTime, StateManager * SM)
 		{
 			var->seek(1.0f);
 		}
-		else
+		/*else
 		{
 			var->seek(0.0f);
-		}
+		}*/
 		
 	}
 	
@@ -87,26 +87,26 @@ void Setting::update(float deltaTime, StateManager * SM)
 	//{
 	for (auto &var : players)
 	{
-		var->update(deltaTime);
-		var->position = (var->velcocity * deltaTime) + var->position;
+		
 
 		if (var->position.x > 1280)
 		{
-			var->position.x = 1280;
+			var->velcocity = 0;
 		}
-		if (var->position.x < 0)
+		else if (var->position.x < 0)
 		{
-			var->position.x = 0;
+			var->velcocity = 0;
 		}
-		if (var->position.y < 0)
+		else if (var->position.y < 0)
 		{
-			var->position.y = 0;
+			var->velcocity = 0;
 		}
-		if (var->position.y > 720)
+		else if (var->position.y > 720)
 		{
-			var->position.y = 720;
+			var->velcocity = 0;
 		}
-	}
+		var->update(deltaTime);
+		}
 	//}
 
 
