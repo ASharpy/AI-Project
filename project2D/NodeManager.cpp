@@ -125,11 +125,11 @@ float NodeManager::calcHeuristic(Node * node, Node * EndNode)
 
 	if (xDistance < yDistance)
 	{
-		H = (GRIDLENGTH * 1.414 * yDistance) + (xDistance - yDistance);
+		H = (GRIDLENGTH * 1.414f * yDistance) + (xDistance - yDistance);
 	}
 	else
 	{
-		H = (GRIDLENGTH * 1.414 * xDistance) + (yDistance - xDistance);
+		H = (GRIDLENGTH * 1.414f * xDistance) + (yDistance - xDistance);
 	}
 	return H;
 }
@@ -199,8 +199,6 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 		while (!open.empty())
 		{
 			float start = Start->fScore;
-
-			float min;
 
 			Node* search = open.front();
 
@@ -291,6 +289,7 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 
 		return std::list<Node*>();
 	}
+	return std::list<Node*>();
 }
 
 
