@@ -21,6 +21,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Flee.cpp" />
+    <ClCompile Include="FleeState.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -32,7 +33,6 @@
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Seek.cpp" />
-    <ClCompile Include="SeekDecision.cpp" />
     <ClCompile Include="SeekState.cpp" />
     <ClCompile Include="Separation.cpp" />
     <ClCompile Include="Setting.cpp" />
@@ -53,6 +53,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Flee.h" />
+    <ClInclude Include="FleeState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateTypes.h" />
     <ClInclude Include="LoadState.h" />
@@ -65,7 +66,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="real.h" />
     <ClInclude Include="Seek.h" />
-    <ClInclude Include="SeekDecision.h" />
     <ClInclude Include="SeekState.h" />
     <ClInclude Include="Separation.h" />
     <ClInclude Include="Setting.h" />

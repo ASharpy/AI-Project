@@ -5,8 +5,8 @@
 
 Vector2 Alignment::update(float deltaTime)
 {
-	float speed = 100.0f;
-
+	float speed = 150.0f;
+	int neighbourCount = 0;
 	for (auto &var : SETAPP->players)
 	{
 		if (SETAPP->playerCircleCheck(Myself, var, (300 + 300)*0.9f))
@@ -33,6 +33,8 @@ Vector2 Alignment::update(float deltaTime)
 	point.normalise();
 
 	point = point * speed * behaviourWeight;
+	
+
 
 	return point;
 }

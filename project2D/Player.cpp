@@ -27,16 +27,19 @@ void Player::update(float deltaTime)
 		tempvec = var->update(deltaTime);
 
 
-		if (desiredVector.x != 0.0f && desiredVector.y != 0.0)
+		if (desiredVector.x != 0.0f && desiredVector.y != 0.0f)
 		{
+			
 			desiredVector.x = desiredVector.x / ActiveBehaverCount;
 			desiredVector.y = desiredVector.y / ActiveBehaverCount;
+			
 		}
 
 		if (tempvec > 0 || var->behaviourWeight > 0)
 		{
 			desiredVector = desiredVector + tempvec;
 			ActiveBehaverCount++;
+			
 		}
 	}
 
@@ -60,7 +63,7 @@ void Player::update(float deltaTime)
 		velcocity * maxSpeed;
 	}
 
-	position = (velcocity * deltaTime) + position;
+	
 	desiredVector = { 0.0f, 0.0f };
 }
 

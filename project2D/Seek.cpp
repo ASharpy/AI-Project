@@ -17,8 +17,6 @@ Seek::~Seek()
 
 Vector2 Seek::update(float deltaTime)
 {
-	NodeManager NM;
-
 
 	float speed = 50.0f;
 

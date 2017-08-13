@@ -27,6 +27,26 @@ void NodeManager::createNodes()
 				gameNodes[i].iswalkable = false;
 			}
 			
+
+			for (int i = 1000; i < 1020; i++)
+			{
+				gameNodes[i].iswalkable = false;
+			}
+
+
+
+			for (int i = 1820; i < 1830; i++)
+			{
+				gameNodes[i].iswalkable = false;
+			}
+
+
+
+			for (int i = 1920; i < 1935; i++)
+			{
+				gameNodes[i].iswalkable = false;
+			}
+
 			gameNodes[i].index = i;
 
 			i++;
@@ -86,40 +106,13 @@ void NodeManager::getEdges()
 
 				gameNodes[j].edgelist.push_back(edge);
 
-				//Node* node = &gameNodes[37];
 
 				TOTAL_EDGE++;
 			}
 		}
 	}
 
-	/*
-	for (int x = 0; x < SCREENX; x += GRIDLENGTH)
-	{
-		for (int y = 0; y < SCREENY; y += GRIDLENGTH)
-		{
-			
 
-			for (int offsetX = -SETAPP->grid; offsetX <= GRIDLENGTH; offsetX = offsetX  + GRIDLENGTH)
-			{
-				for (int offsetY = -SETAPP->grid; offsetY <= GRIDLENGTH; offsetY += GRIDLENGTH)
-				{
-					if (x + offsetX < 0 || y + offsetY < 0 || x + offsetX >= SCREENX || y + offsetY >= SCREENY) continue;
-					
-					if (offsetX == 0 && offsetY == 0) continue;
-				
-
-				
-
-				}
-			}
-			
-			
-
-
-		}
-
-	}*/
 }
 
 float NodeManager::calcHeuristic(Node * node, Node * EndNode)
@@ -317,10 +310,6 @@ std::list<Node*> NodeManager::aStar(Node * Start, Node * End)
 	
 	}
 
-void NodeManager::findNeighbours(Node * node)
-{
-	
-}
 
 
 

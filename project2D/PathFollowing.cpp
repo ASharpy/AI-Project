@@ -66,8 +66,8 @@ Vector2 PathFollowing::update(float deltaTime)
 			return v3;
 		}
 	}
-	else
-	{
+	
+
 		return Vector2{ 0,0 };
-	}
+	
 }

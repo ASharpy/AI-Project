@@ -25,6 +25,7 @@ public:
 	float posX;
 	
 	Node* camefrom;
+
 	float posY;
 	
 	bool iswalkable;

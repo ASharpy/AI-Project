@@ -15,11 +15,11 @@ Separation::Separation(Object * myself)
 
 Vector2 Separation::update(float deltaTime)
 {
-	float speed = 100.0f;
-
+	float speed = 150.0f;
+	int neighbourCount = 0;
 	for (auto &var : SETAPP->players)
 	{
-		bool CircCheck = SETAPP->playerCircleCheck(Myself, var, (300 + 300)*0.9f);
+		bool CircCheck = SETAPP->playerCircleCheck(Myself, var, (400 + 400)*0.9f);
 
 		if (CircCheck == true)
 		{
@@ -48,7 +48,10 @@ Vector2 Separation::update(float deltaTime)
 
 	point.normalise();
 
+	neighbourCount = 0;
 	point = point * speed * behaviourWeight;
+
+
 
 	return point;
 

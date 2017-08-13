@@ -17,20 +17,30 @@ class Setting
 public:
 	
 	Application2D *app;
+
+	//singleton
 	static Setting* getInstance();
 
 	void update(float deltaTime, StateManager * SM);
 
+	// a list of players that are affected by seek, separation and alignment 
 	std::vector<Player*> players;
 
-	int playerindex;
+	// a list of players that are affected by flee
+	std::vector<Player*> fleePlayers;
 
-	int player2index;
+	// a list of players that are affected by pathfinding
+	std::vector<Player*> pathPlayers;
 
+	// a list of players that use the state machine
+	std::vector<Player*> FMLPlayers;
+
+	//the node on which the enemy is nearest
 	int enemyindex;
 
 	float timer = 1.0;
 
+	//calls the render function
 	void render();
 
 	float dist;
@@ -42,39 +52,32 @@ public:
 
 	NodeManager NM;
 
+	/*
+	checks whether another player is within a certain radius of another
+	@param player1 a player object 
+	@param player2 a second player object
+	@param dist the distance between players
+	returns whether it found a player or not
+	*/
 	bool playerCircleCheck(Object* player1, Player* player2, float dist);
-
-
-	
 
 	const int nodeCount = (screensizeX / grid) * (screensizeY / grid);
 
-	/*Object *player;
-
-	Object * player2;
-
-	Object * player3;*/
 
 	Object * enemy;
-private:
+
 	Setting();
+
 	~Setting();
+
+private:
+
 
 	
 
 	
 
 	aie::Font * font;
-
-	
-
-	/*
-	AABB collision to see if two rectangles are colliding 
-	returns true or false depending on whether two objects are colliding
-	*/
-	bool checkCollision(float x, float y, float oWidth, float oHeight, float xTwo, float yTwo, float oTwoWidth, float oTwoHeight);
-
-	//Object * player;
 
 };
 

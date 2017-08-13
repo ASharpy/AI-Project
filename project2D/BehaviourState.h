@@ -1,4 +1,6 @@
 #pragma once
+#include "Vector2.h"
+#include "Object.h"
 
 class BSM;
 class Setting;
@@ -9,9 +11,20 @@ public:
 
 	virtual void update(float dt) = 0;
 
-	BehaviourState(Setting * _app, BSM * _BM) : app(_app), BM(_BM) {};
 
+	/*
+	pure virtual constructor that each state must have because the states dervive from state
+	@param _app application2D
+	@param _BSM BSM
+	@param _myself an object 
+	no returns
+	*/
+	BehaviourState(Setting * _app, BSM * _BM , Object * myself) : app(_app), BM(_BM) { Myself = myself; };
+
+	//Defualt Constructor 
 	BehaviourState() {};
+
+	Object *Myself;
 
 	~BehaviourState() {};
 

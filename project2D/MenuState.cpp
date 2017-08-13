@@ -55,7 +55,7 @@ void MenuState::render()
 	SETAPP->app->Renderer->drawBox(590, 520, 300, 60);
 
 	SETAPP->app->Renderer->setRenderColour(0.5f, 0.5f, 0.5f, 1.0f);
-	SETAPP->app->Renderer->drawText(font, "PONG", 500, 500);
+	SETAPP->app->Renderer->drawText(font, "AI", 500, 500);
 	if (WhatsSelected == 0)
 	{
 		SETAPP->app->Renderer->setRenderColour(1.0f, 0.0f, 0.0f, 1.0f);
@@ -65,7 +65,7 @@ void MenuState::render()
 	{
 		SETAPP->app->Renderer->setRenderColour(0.0f, 1.0f, 0.0f, 1.0f);
 	}
-	SETAPP->app->Renderer->drawText(font, "Play Game", 500, 400);
+	SETAPP->app->Renderer->drawText(font, "Start AI", 500, 400);
 
 	if (WhatsSelected == 1)
 	{

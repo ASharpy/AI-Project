@@ -11,13 +11,11 @@
 class Object
 {
 public:
+	//member variables for all derived objects
 
-// member variables for different objects
 	Vector2 position;
 
 	Vector2 velcocity;
-
-	//float wide;
 
 	float width;
 
@@ -28,13 +26,16 @@ public:
 	std::list<Node*> path;
 
 	std::vector<Behaviours*> behaviourList;
+
 	Object();
 
 	float xDist;
+
 	float yDist;
 
 	float playerDistance(Vector2 player2);
-	//virtual draws the paddles and ball objects
+
+	//virtual draws the players and enemies
 	virtual void Draw();
 	
 	//virtual update function for all children of the object class
