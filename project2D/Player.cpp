@@ -27,6 +27,11 @@ void Player::update(float deltaTime)
 		tempvec = var->update(deltaTime);
 
 
+		if (desiredVector.x != 0.0f && desiredVector.y != 0.0)
+		{
+			desiredVector.x = desiredVector.x / ActiveBehaverCount;
+			desiredVector.y = desiredVector.y / ActiveBehaverCount;
+		}
 
 		if (tempvec > 0 || var->behaviourWeight > 0)
 		{
@@ -34,21 +39,39 @@ void Player::update(float deltaTime)
 			ActiveBehaverCount++;
 		}
 	}
+
 	if (ActiveBehaverCount > 0)
 	{
 		velcocity = desiredVector;
 		
 	}
 
+	if ((velcocity.magnitude() * velcocity.magnitude()) < (minSpeed*minSpeed))
+	{
+		if (velcocity.x != 0.0f || velcocity.y != 0.0)
+		{
+			velcocity.normalise();
+			velcocity * minSpeed;
+		}
+	}
+	else if ((velcocity.magnitude() * velcocity.magnitude()) > (maxSpeed*maxSpeed))
+	{
+		velcocity.normalise();
+		velcocity * maxSpeed;
+	}
 
 	position = (velcocity * deltaTime) + position;
+	desiredVector = { 0.0f, 0.0f };
 }
+
+	
+
 
 void Player::seek(float behaviourWeight)
 {
 	for (auto &var : behaviourList)
 	{
-		if (var->bTypes == FLEE)
+		if (var->bTypes == SEEK)
 		{
 			var->behaviourWeight = behaviourWeight;
 		}

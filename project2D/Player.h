@@ -25,9 +25,9 @@ public:
 	Vector2 desiredVector;
 
 
-	float minSpeed = 10.0f;
+	float minSpeed = 0.0f;
 	
-	float maxSpeed = 100.0f; 
+	float maxSpeed = 200.0f; 
 
 	int noBehaviour;
 	

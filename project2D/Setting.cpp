@@ -32,7 +32,7 @@ Setting::Setting()
 		var->BM->pushBehaveState(SEEK);
 		//player->BM->pushBehaveState(SEEK);
 
-		var->behaviourList.push_back(new Flee(var));
+		var->behaviourList.push_back(new Seek(var));
 		//player2->behaviourList.push_back(new Flee(player2));
 	}
 	
@@ -89,7 +89,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 	{
 		
 
-		if (var->position.x > 1280)
+	/*	if (var->position.x > 1280)
 		{
 			var->velcocity = 0;
 		}
@@ -104,7 +104,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 		else if (var->position.y > 720)
 		{
 			var->velcocity = 0;
-		}
+		*///}
 		var->update(deltaTime);
 		}
 	//}
