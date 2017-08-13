@@ -9,6 +9,10 @@
 #include "Behaviours.h"
 #include "Seek.h"
 #include "Flee.h"
+#include "PathFollowing.h"
+#include "Cohesion.h"
+#include "Alignment.h"
+#include "Separation.h"
 #include <iostream>
 
 Setting::Setting()
@@ -19,7 +23,7 @@ Setting::Setting()
 	players.push_back(new Player(200, 200));
 	players.push_back(new Player(400, 400));
 	players.push_back(new Player(500, 500));
-	//players.push_back(new Player(300, 300));
+	players.push_back(new Player(300, 300));
 	enemy = Factory::MakeEnemy(50, 50);
 
 	for (auto &var : players)
@@ -32,7 +36,11 @@ Setting::Setting()
 		var->BM->pushBehaveState(SEEK);
 		//player->BM->pushBehaveState(SEEK);
 
+		var->behaviourList.push_back(new Separation(var));
+		var->behaviourList.push_back(new Alignment(var));
+		var->behaviourList.push_back(new Cohesion(var));
 		var->behaviourList.push_back(new Seek(var));
+
 		//player2->behaviourList.push_back(new Flee(player2));
 	}
 	
@@ -55,23 +63,40 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 	
 	//std::cout << dist << std::endl;
-	
+	timer -= deltaTime;
+
+
 	for (auto &var : players)
 	{
 		enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
 		var->index = NM.index((int)var->position.x, (int)var->position.y);
 
-		dist = NM.calcDistance(&NM.gameNodes[enemyindex], &NM.gameNodes[var->index]);
-		dist /= 20;
-		if (dist < 1000)
-		{
-			var->seek(1.0f);
-		}
-		/*else
-		{
-			var->seek(0.0f);
-		}*/
+		/*dist = NM.calcDistance(&NM.gameNodes[enemyindex], &NM.gameNodes[var->index]);
+		dist /= 20;*/
+	
+		var->Alignment(1.0f);
+		var->Cohesion(1.0f);
+		var->Separation(1.0f);
+		//var->seek(1.0f);
+			
 		
+
+		
+			//if (timer <= 0)
+			//{
+			//	var->path = NM.aStar(&NM.gameNodes[var->index], &NM.gameNodes[enemyindex]);
+
+			//		if (var->path.size() > 0)
+			//		{
+			//			var->path.pop_back();
+
+			//		}
+
+			//		timer = 1.0;
+			//	}
+			
+
+			var->update(deltaTime);
 	}
 	
 	
@@ -85,8 +110,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 	//if (dist < 8000)
 	//{
-	for (auto &var : players)
-	{
+	
 		
 
 	/*	if (var->position.x > 1280)
@@ -105,8 +129,8 @@ void Setting::update(float deltaTime, StateManager * SM)
 		{
 			var->velcocity = 0;
 		*///}
-		var->update(deltaTime);
-		}
+		
+		
 	//}
 
 
@@ -115,45 +139,8 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 
 
-	/*
-	if (timer <= 0)
-	{
-		for (auto &var : players)
-		{
+	
 
-
-
-			///*	playerindex = NM.index((int)player->position.x, (int)player->position.y);
-
-				//player2index = NM.index((int)player2->position.x, (int)player2->position.y);
-
-				//enemyindex = NM.index((int)enemy->position.x, (int)enemy->position.y);
-
-			var->path = NM.aStar(&NM.gameNodes[var->index], &NM.gameNodes[enemyindex]);
-
-
-			//player2->path = NM.aStar(&NM.gameNodes[player2index], &NM.gameNodes[enemyindex]);
-
-			if (var->path.size() > 0)
-			{
-				var->path.pop_back();
-
-			}
-			//if (player2->path.size() > 0)
-			//{
-			//	player2->path.pop_back();
-
-			//}
-			//
-			timer = 1.0;
-		}
-	}*/
-
-		/*	if (dist < 1000)
-			{
-			system("pause");
-			}*/
-			//}
 
 
 
@@ -166,7 +153,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 		if (app->input->isKeyDown(aie::INPUT_KEY_A))
 		{
 
-			if (enemy->velcocity.x < -300)
+			if (enemy->velcocity.x < -200)
 			{
 				enemy->velcocity.x = enemy->velcocity.x - 0;
 
@@ -181,7 +168,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 		if (app->input->isKeyDown(aie::INPUT_KEY_D))
 		{
 
-			if (enemy->velcocity.x > 300)
+			if (enemy->velcocity.x > 200)
 			{
 				enemy->velcocity.x = enemy->velcocity.x - 0;
 
@@ -195,7 +182,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 		if (app->input->isKeyDown(aie::INPUT_KEY_W))
 		{
-			if (enemy->velcocity.y > 300)
+			if (enemy->velcocity.y > 200)
 			{
 				enemy->velcocity.y = enemy->velcocity.y - 0;
 
@@ -209,7 +196,7 @@ void Setting::update(float deltaTime, StateManager * SM)
 
 		if (app->input->isKeyDown(aie::INPUT_KEY_S))
 		{
-			if (enemy->velcocity.y < -300)
+			if (enemy->velcocity.y < -200)
 			{
 				enemy->velcocity.y = enemy->velcocity.y - 0;
 
@@ -330,7 +317,7 @@ bool Setting::playerCircleCheck(Object * player1, Player * player2, float dist)
 	
 	float SqrDist = distance;
 
-		return SqrDist < (distance * distance);
+		return SqrDist < (dist * dist);
 	
 }
 

@@ -4,16 +4,28 @@
 
 Vector2 Cohesion::update(float deltaTime)
 {
+	float speed = 100.0f;
+
 	for (auto &var : SETAPP->players)
 	{
-		if (SETAPP->playerCircleCheck(Myself, var, (20 + 20)*0.9f));
+		
+		if (SETAPP->playerCircleCheck(Myself, var, (300 + 300)*0.9f))
 		{
+			if (Myself == var)
+			{
+				continue;
+			}
 			point = point + var->position;
 			neighbourCount++;
 
 
 		}
 	}
+	if (neighbourCount == 0)
+	{
+		return Vector2{ 0,0 };
+	}
+
 	point.x = point.x / neighbourCount;
 	point.y = point.y / neighbourCount;
 
@@ -21,7 +33,7 @@ Vector2 Cohesion::update(float deltaTime)
 
 	v.normalise();
 
-	return v;
+	return v * speed * behaviourWeight;
 }
 
 

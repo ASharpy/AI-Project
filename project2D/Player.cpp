@@ -82,9 +82,82 @@ void Player::seek(float behaviourWeight)
 	}
 }
 
-void Player::flee()
+void Player::flee(float behaviourWeight)
 {
+	for (auto &var : behaviourList)
+	{
+		if (var->bTypes == FLEE)
+		{
+			var->behaviourWeight = behaviourWeight;
+		}
+		else
+		{
+			//var->behaviourWeight = 0;
+		}
+	}
 }
+
+void Player::Cohesion(float behaviourWeight)
+{
+	for (auto &var : behaviourList)
+	{
+		if (var->bTypes == COHESION)
+		{
+			var->behaviourWeight = behaviourWeight;
+		}
+		else
+		{
+			//var->behaviourWeight = 0;
+		}
+	}
+}
+
+void Player::Alignment(float behaviourWeight)
+{
+	for (auto &var : behaviourList)
+	{
+		if (var->bTypes == ALIGNMENT)
+		{
+			var->behaviourWeight = behaviourWeight;
+		}
+		else
+		{
+			//var->behaviourWeight = 0;
+		}
+	}
+}
+
+void Player::Separation(float behaviourWeight)
+{
+	for (auto &var : behaviourList)
+	{
+		if (var->bTypes == SEPARATION)
+		{
+			var->behaviourWeight = behaviourWeight;
+		}
+		else
+		{
+			//var->behaviourWeight = 0;
+		}
+	}
+}
+
+void Player::PathFinding(float behaviourWeight)
+{
+	for (auto &var : behaviourList)
+	{
+		if (var->bTypes == PATHING)
+		{
+			var->behaviourWeight = behaviourWeight;
+		}
+		else
+		{
+			//var->behaviourWeight = 0;
+		}
+	}
+}
+
+
 
 Player::~Player()
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "Behaviours.h"
 
-class Alignment : Behaviours
+class Alignment : public Behaviours
 {
 public:
 

@@ -14,7 +14,16 @@ public:
 	NodeManager * NM = new NodeManager;
 
 	void seek(float behaviourWeight);
-	void flee();
+
+	void flee(float behaviourWeight);
+
+	void Cohesion(float behaviourWeight);
+
+	void Alignment(float behaviourWeight);
+
+	void Separation(float behaviourWeight);
+
+	void PathFinding(float behaviourWeight);
 
 	int index;
 
@@ -27,7 +36,7 @@ public:
 
 	float minSpeed = 0.0f;
 	
-	float maxSpeed = 200.0f; 
+	float maxSpeed = 500.0f; 
 
 	int noBehaviour;
 	

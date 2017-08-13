@@ -8,6 +8,7 @@ PathFollowing::PathFollowing(Object * myself)
 {
 	Myself = myself;
 	behaviourWeight = 0;
+	bTypes = PATHING;
 
 }
 
@@ -22,7 +23,7 @@ Vector2 PathFollowing::update(float deltaTime)
 
 
 
-	float speed = 1;
+	float speed = 150.0f;
 
 
 

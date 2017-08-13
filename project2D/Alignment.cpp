@@ -9,13 +9,22 @@ Vector2 Alignment::update(float deltaTime)
 
 	for (auto &var : SETAPP->players)
 	{
-		if (SETAPP->playerCircleCheck(Myself, var, (20 + 20)*0.9f));
+		if (SETAPP->playerCircleCheck(Myself, var, (300 + 300)*0.9f))
 		{
+			if (Myself == var)
+			{
+				continue;
+			}
 			point = point + var->velcocity;
 			neighbourCount++;
 
 
 		}
+	}
+
+	if (neighbourCount == 0)
+	{
+		return Vector2{ 0,0 };
 	}
 
 	point.x = point.x / neighbourCount;
@@ -26,11 +35,6 @@ Vector2 Alignment::update(float deltaTime)
 	point = point * speed * behaviourWeight;
 
 	return point;
-
-	if (neighbourCount == 0)
-	{
-		return Vector2{ 0,0 };
-	}
 }
 
 Alignment::Alignment(Object * myself)

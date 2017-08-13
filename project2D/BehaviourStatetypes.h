@@ -1,3 +1,3 @@
 #pragma once
 
-enum BehaviourTypes { SEEK,FLEE,ALIGNMENT,COHESION};
+enum BehaviourTypes { SEEK,FLEE,ALIGNMENT,COHESION , PATHING, SEPARATION};
